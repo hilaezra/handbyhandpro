@@ -24,6 +24,16 @@ const LoginPage = () => {
         console.log(response.data)
     }
 
+    //TODO
+    const handleSignInClicked = async () => {
+
+    }
+
+    //TODO
+    const handleConnectWithFacebookClicked = async () => {
+      
+    }
+
     return (
         <div>
             <div>
@@ -35,7 +45,18 @@ const LoginPage = () => {
                 <input name='password' type='password' value={password} onChange={handlePasswordChange} />
             </div>
 
+            <div>
             <button onClick={handleLoginClicked}>Login</button>
+            </div>
+
+            <div>
+            <button onClick={handleSignInClicked}>Sign In</button>
+            </div>
+
+            <div>
+            <button onClick={handleConnectWithFacebookClicked}>Connect with Facebook</button>
+            </div>
+            
         </div>
     )
 }
