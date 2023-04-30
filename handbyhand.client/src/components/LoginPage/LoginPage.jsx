@@ -22,6 +22,7 @@ const LoginPage = () => {
         })
 
         console.log(response.data)
+    
     }
 
     //TODO
