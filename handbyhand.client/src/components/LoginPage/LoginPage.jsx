@@ -29,8 +29,8 @@ const LoginPage = () => {
 
     //TODO
     const navigate = useNavigate();
-    const handleSignInClicked = () => {    
-        navigate('/signin');    
+    const handleSignUpClicked = () => {    
+        navigate('/signup');    
     }    
 
     //TODO
@@ -54,7 +54,7 @@ const LoginPage = () => {
             </div>
 
             <div>
-            <button onClick={handleSignInClicked}>Sign In</button>
+            <button onClick={handleSignUpClicked}>Sign Up</button>
             </div>
 
             <div>

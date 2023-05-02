@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 
-const SignInPage = () => {
+const SignUpPage = () => {
     const [firstname, setFirstname] = React.useState("")
     const [lastname, setLastname] = React.useState("")
     const [email, setEmail] = React.useState("")
@@ -40,7 +40,7 @@ const SignInPage = () => {
     }
 
     //TODO
-    const handleSignInClicked = async () => {
+    const handleSignUpClicked = async () => {
 
     }
 
@@ -72,11 +72,11 @@ const SignInPage = () => {
             </div>
 
             <div>
-            <button onClick={handleSignInClicked}>Sign In</button>
+            <button onClick={handleSignUpClicked}>Sign Up</button>
             </div>
             
         </div>
     )
 }
 
-export default SignInPage
+export default SignUpPage
