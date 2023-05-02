@@ -1,7 +1,9 @@
 import React from 'react'
 import axios from 'axios'
+import {useNavigate} from 'react-router-dom';
 
 const LoginPage = () => {
+
     const [username, setUsername] = React.useState("")
     const [password, setPassword] = React.useState("")
 
@@ -25,9 +27,10 @@ const LoginPage = () => {
     }
 
     //TODO
-    const handleSignInClicked = async () => {
-
-    }
+    const navigate = useNavigate();
+    const handleSignInClicked = () => {    
+        navigate('/signin');    
+    }    
 
     //TODO
     const handleConnectWithFacebookClicked = async () => {
