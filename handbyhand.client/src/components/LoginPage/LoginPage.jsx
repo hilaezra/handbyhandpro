@@ -41,6 +41,7 @@ const LoginPage = () => {
 
     return (
         <div>
+      
             <img src='../../AppImages/logo-hand-by-hand.png'/>
             <h1 id = "login-title">Hand By Hand</h1>
             <div className='login-text'>

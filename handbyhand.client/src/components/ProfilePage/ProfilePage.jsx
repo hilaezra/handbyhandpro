@@ -6,7 +6,7 @@ const HomePage = () => {
     return (
         <div>
 
-          <p>hello,hila you are so beutiful today love you yuvals </p>   
+          <p>hello hila, you are so beutiful today love you yuval </p>   
           
         </div>
     )
