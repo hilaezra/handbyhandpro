@@ -1,0 +1,24 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #FCF8E8;
+
+  }
+  
+  .text {
+    text-align: center;
+  }
+
+  #login-title {
+    font-size: 70px;
+    color: #DF7861;
+    font-weight: bolder;
+    font-family: 'Luckiest Guy', cursive;
+    letter-spacing: 7px;
+  }
+
+  .login-text {
+    font-family: 'Luckiest Guy', cursive;
+  }
