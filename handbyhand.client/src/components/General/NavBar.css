@@ -1,0 +1,15 @@
+.navbar {
+    background-color: #ECB390;
+  }
+  
+  .navbar .navbar-nav .nav-link {
+    color: #DF7861;
+    font-weight: bold;
+  }
+
+  #logo-home {
+    color: #DF7861;
+    font-weight: bold;
+    font-size: xx-large; 
+  }
+  
