@@ -3,7 +3,7 @@ import { Tab, Tabs } from 'react-bootstrap';
 import './HomePageTabs.css'
 
 //test
-import Post from "../General/Post"
+//import Post from "../../../../handbyhand.server/models/PostModel"
 
 const MyTabs = () => {
     //testing
@@ -32,8 +32,8 @@ const MyTabs = () => {
         <div class="events">
             <Tabs defaultActiveKey="tab1" id="my-tabs">
                 <Tab eventKey="tab1" title="All">
-                    <Post post={post} />
-                    <Post post={post2} />
+                    {/* <Post post={post} /> */}
+                    {/* <Post post={post2} /> */}
 
                 </Tab>
                 <Tab eventKey="tab2" title="Social">
