@@ -39,9 +39,17 @@ const SignUpPage = () => {
         setPassword(e.target.value)
     }
 
-    //TODO
     const handleSignUpClicked = async () => {
+        const response = await axios.post("http://localhost:3000/auth/signup", {
+            firstname: firstname,
+            lastname: lastname,
+            email: email,
+            facebookuser: facebookuser,
+            username: username,
+            password: password
+        })
 
+        console.log(response.data);
     }
 
     return (
