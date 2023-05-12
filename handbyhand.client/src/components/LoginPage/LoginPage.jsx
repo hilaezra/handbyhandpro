@@ -3,6 +3,7 @@ import axios from 'axios'
 import {useNavigate} from 'react-router-dom';
 import './LoginPage.css';
 
+
 const LoginPage = () => {
 
     const [username, setUsername] = React.useState("")
@@ -55,15 +56,19 @@ const LoginPage = () => {
             </div>
             
             <div>
-            <button onClick={handleLoginClicked}>Login</button>
+            <button class="login-btn " type="submit" onClick={handleLoginClicked}>Login</button>
             </div>
 
-            <div>
-            <button onClick={handleSignUpClicked}>Sign Up</button>
-            </div>
+            <span/>
 
             <div>
-            <button onClick={handleConnectWithFacebookClicked}>Connect with Facebook</button>
+            <button class="login-btn " type="submit" onClick={handleSignUpClicked}>Sign Up</button>
+            </div>
+
+            <span/>
+
+            <div>
+            <button class="login-btn " type="submit" onClick={handleConnectWithFacebookClicked}>Connect with Facebook</button>
             </div>
             </div> 
         </div>

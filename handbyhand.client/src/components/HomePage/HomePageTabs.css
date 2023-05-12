@@ -1,0 +1,10 @@
+.events {
+margin-top: 100px;
+background-color: #b4d1be;
+width: 800px;
+min-width:800px;
+min-height: 450px;
+max-height: 450px;
+overflow-y: scroll;
+
+}

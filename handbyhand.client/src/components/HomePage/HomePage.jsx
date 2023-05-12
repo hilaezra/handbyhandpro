@@ -1,16 +1,15 @@
 import React from 'react'
 import axios from 'axios'
+import HomePageTabs from "./HomePageTabs"
 
 
 const HomePage = () => {
 
-    return (
-        <div>
-
-          <p>hello</p>   
-          
-        </div>
-    )
+  return (
+    <div >
+      <HomePageTabs/>
+    </div>
+  )
 }
 
 export default HomePage

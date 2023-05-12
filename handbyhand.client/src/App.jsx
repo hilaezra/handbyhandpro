@@ -8,15 +8,25 @@ import AdvancedSearchPage from "./components/AdvancedSearchPage/AdvancedSearchPa
 import Navbar from './components/General/NavBar';
 
 import './App.css';
-import {Routes, Route} from 'react-router-dom';
+import { useState } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
 
 function App() {
 
+  const location = useLocation();
+  const [loggedIn, setLoggedIn] = useState(false);
 
-  return (
-    <div className="App">
-      <Navbar/>
-      <Routes>
+  // logic to set the loggedIn state based on user authentication status
+  // ...
+
+  // render the navbar only if the user is logged in and not on the login page
+  //--TODO-- check if the user loged in and then change to
+ // if (loggedIn && location.pathname !== '/login') 
+  if (location.pathname !== '/') {
+    return (
+      <div className="App">
+        <Navbar />
+        <Routes>
           <Route path="/" element={<LoginPage />} />
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/home" element={<HomePage />} />
@@ -27,9 +37,21 @@ function App() {
 
 
 
-      </Routes>
-    </div>
-  )
+        </Routes>
+
+      </div>
+    );
+  }
+  // render the login page without the navbar
+  else {
+    return (
+      <div className="App">
+        {/* login page content */}
+        <LoginPage />
+      </div>
+    );
+  }
+
 }
 
 export default App
