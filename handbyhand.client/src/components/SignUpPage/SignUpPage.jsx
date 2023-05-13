@@ -1,6 +1,8 @@
 import React from 'react'
 import axios from 'axios'
 
+import '../LoginPage/LoginPage.css'
+
 const SignUpPage = () => {
     const [firstname, setFirstname] = React.useState("")
     const [lastname, setLastname] = React.useState("")
@@ -54,33 +56,35 @@ const SignUpPage = () => {
 
     return (
         <div>
+            <h1 id = "sign-up-title">Sign Up</h1>
+             <form className="form">
             <div>
-                <label htmlFor="firstname">firstname: </label>
-                <input name='firstname' value={firstname} onChange={handleFirstnameChange} />
+                <label className="login-lab" htmlFor="firstname">firstname: </label>
+                <input className="text-field" name='firstname' value={firstname} onChange={handleFirstnameChange} />
             </div>
             <div>
-                <label htmlFor="lastname">lastname: </label>
-                <input name='lastname' value={lastname} onChange={handleLastnameChange} />
+                <label className="login-lab" htmlFor="lastname">lastname: </label>
+                <input className="text-field" name='lastname' value={lastname} onChange={handleLastnameChange} />
             </div>
             <div>
-                <label htmlFor="email">email: </label>
-                <input name='email' value={email} onChange={handleEmailChange} />
+                <label className="login-lab" htmlFor="email">email: </label>
+                <input className="text-field" name='email' value={email} onChange={handleEmailChange} />
             </div>
             <div>
-                <label htmlFor="facebookuser">facebookuser: </label>
-                <input name='facebookuser' value={facebookuser} onChange={handleFacebookuserChange} />
+                <label className="login-lab" htmlFor="facebookuser">facebookuser: </label>
+                <input className="text-field" name='facebookuser' value={facebookuser} onChange={handleFacebookuserChange} />
             </div>
             <div>
-                <label htmlFor="username">username: </label>
-                <input name='username' value={username} onChange={handleUsernameChange} />
+                <label className="login-lab" htmlFor="username">username: </label>
+                <input className="text-field" name='username' value={username} onChange={handleUsernameChange} />
             </div>
             <div>
-                <label htmlFor="password">password:</label>
-                <input name='password' type='password' value={password} onChange={handlePasswordChange} />
+                <label className="login-lab" htmlFor="password">password:</label>
+                <input className="text-field" name='password' type='password' value={password} onChange={handlePasswordChange} />
             </div>
-
+            </form>
             <div>
-            <button onClick={handleSignUpClicked}>Sign Up</button>
+            <button class="login-btn " onClick={handleSignUpClicked}>Sign Up</button>
             </div>
             
         </div>
