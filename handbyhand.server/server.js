@@ -9,7 +9,7 @@ const port = 3000
 
 // Connect to DB
 try{
-  mongoose.connect('mongodb://localhost:27017/', {
+  mongoose.connect('mongodb://127.0.0.1/test', {
     dbName: 'hand_by_hand_db',
     useNewUrlParser: true,
     useUnifiedTopology: true
