@@ -1,12 +1,12 @@
 import React from 'react'
 
-
+import './AdvancedSearchPage.css'
 const AdvancedSearchPage = () => {
 
     return (
         <div>
 
-          <p>hello, im Advanced Search Page  </p>   
+          <h1 className="advanced-search-title">Coming Soon ...</h1>   
           
         </div>
     )

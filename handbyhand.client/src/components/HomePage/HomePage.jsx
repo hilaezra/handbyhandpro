@@ -1,13 +1,23 @@
 import React from 'react'
-import axios from 'axios'
 import HomePageTabs from "./HomePageTabs"
+import 'bootstrap/dist/css/bootstrap.css';
+import './HomePage.css'
 
 
 const HomePage = () => {
 
   return (
-    <div >
-      <HomePageTabs/>
+    <div class="wrapper">
+      
+      <div class="notification">
+        <h5>notification:</h5>
+        <p> invite friends to become one of our family members</p>
+      </div>
+
+      <div class="home-page-tabs">
+        <HomePageTabs />
+      </div>
+
     </div>
   )
 }

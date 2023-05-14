@@ -6,22 +6,35 @@ import './AboutUsPage.css'
 const AboutUsPage = () => {
 
   return (
-    <div>
+    <div className='page'>
       <h1 id="about-us-title">About Us</h1>
-      <p>The Purpose of "HAND BY HAND"
+      <p className="purpose-text">The Purpose of "HAND BY HAND"
         Our organization was established out of a genuine
         need to provide a response to public entities and
         individuals who wish to contribute to the community.</p>
 
-      <h5 >We provide assistance for:</h5>
-      <p> Individuals seeking spontaneous or regular volunteering 
-        opportunities according to their skills and availability.
-        Public entities or private individuals in need of volunteers 
-        or donated goods for charity events and non-profit activities.
-        Donating or receiving furniture, clothing, and similar items.</p>
+      <h5 className="sub-title">We provide assistance for:</h5>
 
-        <h2 >Let us help you become better people for a better world</h2>
+      <div className="wrapper">
+        <div class="circle1">
+          <p> <br /> <br /> Individuals seeking <br /> spontaneous or regular volunteering
+            opportunities according to their skills and availability. </p>
+        </div>
+
+      <div class="circle3">
+        <p> <br /> <br /> Donating or <br /> receiving furniture, clothing, and <br /> similar items.</p>
+      </div>
+      </div>
+
+      <div class="circle2">
+        <p>Public entities or <br /> private individuals in need of volunteers
+          or donated goods <br /> for charity events <br /> and non-profit activities. </p>
+      </div>
+
+      <h2 className="moto">Let us help you become better people for a better world</h2>
+
     </div>
+
   )
 }
 

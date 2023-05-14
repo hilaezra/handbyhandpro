@@ -45,7 +45,6 @@ const LoginPage = () => {
       
             <img src='../../AppImages/logo-hand-by-hand.png'/>
             <h1 id = "login-title">Hand By Hand</h1>
-            <form className="form">
             <div className='login-text'>
                 <div>
                 <label className="login-lab" htmlFor="username">Username</label>
@@ -72,7 +71,6 @@ const LoginPage = () => {
             <button class="login-btn " type="submit" onClick={handleConnectWithFacebookClicked}>Connect with Facebook</button>
             </div>
             </div> 
-            </form>
         </div>
     )
 }
