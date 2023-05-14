@@ -45,14 +45,15 @@ const LoginPage = () => {
       
             <img src='../../AppImages/logo-hand-by-hand.png'/>
             <h1 id = "login-title">Hand By Hand</h1>
+            <form className="form">
             <div className='login-text'>
                 <div>
-                <label htmlFor="username">username: </label>
-                <input name='username' value={username} onChange={handleUsernameChange} />
+                <label className="login-lab" htmlFor="username">Username</label>
+                <input className="text-field" name='username' value={username} onChange={handleUsernameChange} />
             </div>
             <div>
-                <label htmlFor="password">password:</label>
-                <input name='password' type='password' value={password} onChange={handlePasswordChange} />
+                <label className="login-lab" htmlFor="password">Password</label>
+                <input className="text-field" name='password' type='password' value={password} onChange={handlePasswordChange} />
             </div>
             
             <div>
@@ -71,6 +72,7 @@ const LoginPage = () => {
             <button class="login-btn " type="submit" onClick={handleConnectWithFacebookClicked}>Connect with Facebook</button>
             </div>
             </div> 
+            </form>
         </div>
     )
 }

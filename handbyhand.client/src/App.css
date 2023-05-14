@@ -9,5 +9,11 @@
     align-items: center;
     height: 100vh;
     background-color: #FCF8E8;
+    font-family: 'Luckiest Guy', cursive;
 
+  }
+  
+  .text {
+    text-align: center;
+    font-family: 'Luckiest Guy', cursive;
   }
