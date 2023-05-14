@@ -1,0 +1,22 @@
+.wrapper {
+    /* Set the display property to flex for horizontal alignment */
+    display: flex;
+}
+
+.home-page-tabs,
+.notification {
+    /* Set the display property to inline-block for side-by-side positioning */
+    display: inline-block;
+}
+
+.notification {
+    margin-top: 400px;
+    width: 300px;
+    height: 200px;
+    margin: 20px;
+    background-color: #94B49F;
+    color: #FCF8E8;
+    overflow-y: scroll;
+    /* Set a high z-index to position the element above the navbar */
+    /* z-index: 9999; */
+}

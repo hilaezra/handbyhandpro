@@ -1,10 +1,21 @@
 .events {
-margin-top: 100px;
-background-color: #b4d1be;
-width: 800px;
-min-width:800px;
-min-height: 450px;
-max-height: 450px;
-overflow-y: scroll;
+    margin-top: 100px;
+    background-color: #b4d1be;
+    width: 800px;
+    min-width: 800px;
+    min-height: 450px;
+    max-height: 450px;
+    overflow-y: scroll;
 
+}
+
+/* Set the color of the tab titles */
+.nav-tabs .nav-item .nav-link {
+    color: #FCF8E8;
+    font-size: 16px;
+}
+
+/* Set the color of the active tab title */
+.nav-tabs .nav-item .nav-link.active {
+    color: #94B49F;
 }

@@ -67,7 +67,7 @@ const SignUpPage = () => {
                 <input className="text-field" name='lastname' value={lastname} onChange={handleLastnameChange} />
             </div>
             <div>
-                <label htmlFor="email">email: </label>
+                <label className="login-lab" type="email" htmlFor="email">email: </label>
                 <input name='email' value={email} onChange={handleEmailChange} />
             </div>
             <div>
