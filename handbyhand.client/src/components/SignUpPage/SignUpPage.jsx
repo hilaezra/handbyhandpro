@@ -64,7 +64,7 @@ const SignUpPage = () => {
             </div>
             <div>
                 <label htmlFor="email">email: </label>
-                <input name='email' value={email} onChange={handleEmailChange} />
+                <input name='email' type = 'email' value={email} onChange={handleEmailChange} />
             </div>
             <div>
                 <label htmlFor="facebookuser">facebookuser: </label>
