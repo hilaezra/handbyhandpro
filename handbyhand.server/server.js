@@ -1,11 +1,13 @@
 const express = require('express');
+require("dotenv").config();
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const authenticationRoutes = require("./src/api/auth/auth.routes")
 const mongoose = require('mongoose');
-
 const app = express()
-const port = 3000
+const port = process.env.PORT
+app.use(express.json());
+
 
 // Connect to DB
 try{
@@ -17,10 +19,8 @@ try{
   console.log('Connected to yourDB-name database');
 } catch (err) {
   console.error(err.message);
-  // Exit process with failure
   process.exit(1);
 }
-
 
 app.use(cors())
 app.use(bodyParser.json())
