@@ -9,10 +9,10 @@ const HomePage = () => {
   return (
     <div class="wrapper">
       
-      <div id="notification-position" className="notification ">
+      {/* <div id="notification-position" className="notification ">
         <h5>notification:</h5>
         <p> invite friends to become one of our family members</p>
-      </div>
+      </div> */}
 
       <div class="home-page-tabs">
         <HomePageTabs />
