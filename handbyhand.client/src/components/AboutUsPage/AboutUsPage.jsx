@@ -21,12 +21,12 @@ const AboutUsPage = () => {
             opportunities according to their skills and availability. </p>
         </div>
 
-      <div class="circle3">
+      <div className="circle3">
         <p> <br /> <br /> Donating or <br /> receiving furniture, clothing, and <br /> similar items.</p>
       </div>
       </div>
 
-      <div class="circle2">
+      <div className="circle2">
         <p>Public entities or <br /> private individuals in need of volunteers
           or donated goods <br /> for charity events <br /> and non-profit activities. </p>
       </div>

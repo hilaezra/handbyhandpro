@@ -39,3 +39,9 @@
 ::-webkit-scrollbar-thumb:hover {
   background-color: #fcf8e8c2;
 }
+
+.textfield-lab {
+  color: #94B49F;
+  font-size: 20px;
+  font: bolder;
+}
