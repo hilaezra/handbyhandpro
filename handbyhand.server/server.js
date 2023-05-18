@@ -1,8 +1,10 @@
 const express = require('express');
 require("dotenv").config();
 const bodyParser = require('body-parser')
+const cookieParser = require("cookie-parser");
 const cors = require('cors')
 const authenticationRoutes = require("./src/api/auth/auth.routes")
+const postsRoutes = require("./src/api/auth/post.routes")
 const mongoose = require('mongoose');
 const app = express()
 const port = process.env.PORT
@@ -24,11 +26,12 @@ try{
 
 app.use(cors())
 app.use(bodyParser.json())
+app.use(cookieParser());
 // app.use(bodyParser.urlencoded{})
 
 // App routes
 app.use("/auth", authenticationRoutes)
-// app.use("/post", postsRoutes)
+app.use("/post", postsRoutes)
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
