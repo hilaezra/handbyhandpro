@@ -7,14 +7,14 @@ import './HomePage.css'
 const HomePage = () => {
 
   return (
-    <div class="wrapper">
+    <div className="wrapper">
       
       {/* <div id="notification-position" className="notification ">
         <h5>notification:</h5>
         <p> invite friends to become one of our family members</p>
       </div> */}
 
-      <div class="home-page-tabs">
+      <div className="home-page-tabs">
         <HomePageTabs />
       </div>
 

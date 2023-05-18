@@ -57,6 +57,7 @@ const CreateEventPage = () => {
 
     // })
   });
+}
 
   return (
     <div className="createevent-container">
@@ -110,5 +111,5 @@ const CreateEventPage = () => {
     </div>
   )
 }
-}
+
 export default CreateEventPage
