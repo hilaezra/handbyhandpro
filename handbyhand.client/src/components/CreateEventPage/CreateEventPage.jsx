@@ -43,22 +43,20 @@ const CreateEventPage = () => {
   };
 
   const handleCreateEventClicked = async () => {
-    //CREATE- for use to send the server the data
-
-
-    // const response = await axios.post("http://localhost:3000/auth/createevent", {
-    //     author: author,
-    //     lastname: lastname,
-    //     eventtype: eventtype,
-    //     title: title,
-    //     content: content,
-    //     startdate: startdate,
-    //     enddate: enddate,
-    //     participants:participants,
-    //     reviews:reviews
+   
+    const response = await axios.post("http://localhost:3000/auth/createevent", {
+         //author: author,  - dont nreed to be send!!
+         //lastname: lastname, - dont nreed to be send!!
+         eventType: eventType,
+         eventTitle: eventTitle,
+         content: content,
+         startDate: startDate,
+         endDate: endDate,
+         AuthorIsParticipant:AuthorIsParticipant
+        //reviews:reviews  - dont nreed to be send!!
 
     // })
-  };
+  });
 
   return (
     <div className="createevent-container">
@@ -112,5 +110,5 @@ const CreateEventPage = () => {
     </div>
   )
 }
-
+}
 export default CreateEventPage

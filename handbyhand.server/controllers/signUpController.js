@@ -1,33 +1,65 @@
 const Users = require('../models/Users');
-const bcrypt = require('bcrypt');
+const jwt = require("jsonwebtoken");
+const express = require('express');
+//const bcrypt = require('bcrypt');
 
-const handleNewUser = async(req, res) => {
-    const { firstname, lastname, email, facebookuser, username, password } = req.body;
-    if(!firstname || !lastname || !email || !facebookuser || !username || !password) 
-        return res.status(400).json({'message' : 'Missing registration details'});
+module.exports = {
+    signUp: async (req, res) => {
+        try 
+        {
+            const maxAge = 3 * 60 * 60;
+            //Get user input    
+            const user = req.body;
 
-    const duplicate = await Users.findone({email: email}).exec();
-    if(duplicate) return res.sendStatus(409); //conflict       
+            // Validate user input
+            if(!user.firstname|| !user.lastname || !user.email || !user.facebookuser || !user.username || !user.password) 
+            {
+                console.log('Missing registration details'); //for checking!
+                return res.status(400).json({'message' : 'Missing registration details'});
+            } 
+            
+            // check if user already exist in our database
+            const oldUser = await Users.findOne({ email: user.email });
+            if (oldUser) {
+              console.log("User Already Exist. Please Login");
+              return res.status(409).send("User Already Exist. Please Login");}
+        
+            // check if username already exist in our database
+            const inUseUsername = await Users.findOne({ username: user.username });
+            if (inUseUsername) {
+              console.log("Username Already Exist. Please choose other username");
+              return res.status(409).send("Username Already Exist. Please choose other username");}
+        
+            // Create user in our database
+            user.email.toLowerCase();
+            const newUser = new Users(user);
+        
+            newUser.role = "Basic";
+            // Create token
+            const token = jwt.sign(
+                { user_id: user._id, email: user.email, role: newUser.role },
+                process.env.TOKEN_KEY,
+                {
+                  expiresIn: maxAge,
+                });
+              
+            // save user token
+            user.token = token;
+            await newUser.save();
+            console.log(newUser); //working :) 
+            console.log('New user created'); //working :)
 
-    try{
+            res.cookie("jwt", token, {
+              httpOnly: true,
+              maxAge: maxAge * 1000, // 3hrs in ms
+            });
 
-        //encrypt the password
-        const hashedPwd = await bcrypt.hash(password, 10);
-        //create and srore the new user
-        const result = await Users.create({
-            "firstname": firstname,
-            "lastname": lastname,
-            "email": email,
-            "facebookuser": facebookuser,
-            "username": username,
-            "password": hashedPwd
-        });
-
-        console.log(result);
-        res.status(201).json({'success' : 'New user created!' });
-
-    } catch(err)
-    {
-        res.status(500).json({'message' : err.message });
+            return res.status(200).json(user);  
+        }
+        catch (err) 
+        {
+                console.log(err);
+                res.status(500).json({'message' : err.message });
+        }
     }
-}
+ }
