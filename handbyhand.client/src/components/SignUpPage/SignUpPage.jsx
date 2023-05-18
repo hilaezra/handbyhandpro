@@ -59,27 +59,27 @@ const SignUpPage = () => {
             <h1 id = "sign-up-title">Sign Up</h1>
              <form className="form">
             <div>
-                <label className="login-lab" htmlFor="firstname">firstname: </label>
+                <label className="login-lab" htmlFor="firstname">First name: </label>
                 <input className="text-field" name='firstname' value={firstname} onChange={handleFirstnameChange} />
             </div>
             <div>
-                <label className="login-lab" htmlFor="lastname">lastname: </label>
+                <label className="login-lab" htmlFor="lastname">Last name: </label>
                 <input className="text-field" name='lastname' value={lastname} onChange={handleLastnameChange} />
             </div>
             <div>
-                <label className="login-lab" type="email" htmlFor="email">email: </label>
-                <input name='email' value={email} onChange={handleEmailChange} />
+                <label className="login-lab" type="email" htmlFor="email">Email: </label>
+                <input className="text-field" name='email' value={email} onChange={handleEmailChange} />
             </div>
             <div>
-                <label className="login-lab" htmlFor="facebookuser">facebookuser: </label>
+                <label className="login-lab" htmlFor="facebookuser">Facebook username: </label>
                 <input className="text-field" name='facebookuser' value={facebookuser} onChange={handleFacebookuserChange} />
             </div>
             <div>
-                <label className="login-lab" htmlFor="username">username: </label>
+                <label className="login-lab" htmlFor="username">Username: </label>
                 <input className="text-field" name='username' value={username} onChange={handleUsernameChange} />
             </div>
             <div>
-                <label className="login-lab" htmlFor="password">password:</label>
+                <label className="login-lab" htmlFor="password">Psassword:</label>
                 <input className="text-field" name='password' type='password' value={password} onChange={handlePasswordChange} />
             </div>
             </form>

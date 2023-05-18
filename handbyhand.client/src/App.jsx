@@ -22,7 +22,7 @@ function App() {
   // render the navbar only if the user is logged in and not on the login page
   //--TODO-- check if the user loged in and then change to
  // if (loggedIn && location.pathname !== '/login') 
-  if (location.pathname !== '/') {
+  if (location.pathname !== '/' && location.pathname !== '/signup') {
     return (
       <div className="App">
         <Navbar />
@@ -42,6 +42,16 @@ function App() {
       </div>
     );
   }
+
+  else if(location.pathname == '/signup') {
+    return (
+      <div className="App">
+        {/* login page content */}
+        <SignUpPage />
+      </div>
+    );
+  }
+
   // render the login page without the navbar
   else {
     return (
