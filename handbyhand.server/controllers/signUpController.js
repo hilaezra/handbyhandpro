@@ -12,7 +12,7 @@ module.exports = {
             const user = req.body;
 
             // Validate user input
-            if(!user.firstname|| !user.lastname || !user.email || !user.facebookuser || !user.username || !user.password) 
+            if(!user.firstname|| !user.lastname || !user.email || !user.facebookuser || !user.username || !user.password || !user.gender || !user.birthday) 
             {
                 console.log('Missing registration details'); //for checking!
                 return res.status(400).json({'message' : 'Missing registration details'});
@@ -59,7 +59,7 @@ module.exports = {
         catch (err) 
         {
                 console.log(err);
-                res.status(500).json({'message' : err.message });
+                return res.status(500).json({'message' : err.message });
         }
     }
  }

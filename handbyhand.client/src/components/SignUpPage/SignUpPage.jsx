@@ -1,11 +1,14 @@
 import React from 'react'
 import axios from 'axios'
+import {useNavigate} from 'react-router-dom';
 
 import '../LoginPage/LoginPage.css'
 
 const SignUpPage = () => {
     const [firstname, setFirstname] = React.useState("")
     const [lastname, setLastname] = React.useState("")
+    const [gender, setGender] = React.useState("")
+    const [birthday, setBirthday] = React.useState("")
     const [email, setEmail] = React.useState("")
     const [facebookuser, setFacebookuser] = React.useState("")
     const [username, setUsername] = React.useState("")
@@ -19,6 +22,16 @@ const SignUpPage = () => {
     const handleLastnameChange = (e) => {
         console.log(e.target.value)
         setLastname(e.target.value)
+    }
+
+    const handleGenderChange = (e) => {
+        console.log(e.target.value)
+        setGender(e.target.value)
+    }
+
+    const handleBirthdayChange = (e) => {
+        console.log(e.target.value)
+        setBirthday(e.target.value)
     }
 
     const handleEmailChange = (e) => {
@@ -41,7 +54,9 @@ const SignUpPage = () => {
         setPassword(e.target.value)
     }
 
+    const navigate = useNavigate();
     const handleSignUpClicked = async () => {
+
         const response = await axios.post("http://localhost:3000/auth/signup", {
             firstname: firstname,
             lastname: lastname,
@@ -49,9 +64,12 @@ const SignUpPage = () => {
             facebookuser: facebookuser,
             username: username,
             password: password
-        })
+        }) 
 
-        console.log(response.data);
+        if(response.status == 200)
+            navigate("/home"); 
+        //else //todo!    
+
     }
 
     return (
@@ -65,6 +83,14 @@ const SignUpPage = () => {
             <div>
                 <label className="login-lab" htmlFor="lastname">Last name: </label>
                 <input className="text-field" name='lastname' value={lastname} onChange={handleLastnameChange} />
+            </div>
+            <div>
+                <label className="login-lab" htmlFor="gender">Gender: </label>
+                <input className="text-field" name='gender' value={gender} onChange={handleGenderChange} />
+            </div>
+            <div>
+                <label className="login-lab" htmlFor="birthday">Birthday: </label>
+                <input className="text-field" name='birthday' value={birthday} onChange={handleBirthdayChange} />
             </div>
             <div>
                 <label className="login-lab" type="email" htmlFor="email">Email: </label>

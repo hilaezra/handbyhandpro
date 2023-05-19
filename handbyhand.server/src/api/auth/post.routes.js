@@ -59,14 +59,13 @@ router.route('/createevent').post(userAuth, async (req, res) => {
     catch(err)
     {
         console.log(err);
-        res.status(500).json({'message' : err.message });
+        return res.status(500).json({'message' : err.message });
     }
 
     return res.status(400).send("Invalid Credentials");
 
     ////////////////////////////////////////////////////
     //return res.status(200).json({ message: "Successful"});
-    //res.cookie("jwt", "")
 });
 
 module.exports = router;

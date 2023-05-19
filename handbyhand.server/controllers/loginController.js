@@ -11,7 +11,7 @@ module.exports = {
         
             // Validate user input
             if (!(username && password)) {
-              res.status(400).send("All input is required");
+              return res.status(400).send("All input is required");
             }
             // Validate if user exist in our database
             const user = await Users.findOne({ username });
@@ -33,11 +33,13 @@ module.exports = {
                 maxAge: maxAge * 1000, // 3hrs in ms
               });
 
+              console.log("user login:)");
+
               return res.status(200).json(user);
             }
             }catch (err) {
                 console.log(err);
-                res.status(500).json({'message' : err.message });
+                return res.status(500).json({'message' : err.message });
             }
         
             return res.status(400).send("Invalid Credentials");
