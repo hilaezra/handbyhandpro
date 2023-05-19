@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import './LoginPage.css';
+import '../General/Alert.css'
 
 
 const LoginPage = () => {
@@ -37,7 +38,7 @@ const LoginPage = () => {
             }
 
         } catch (error) {
-            return alert('the password or the username in correct');
+            return alert('Username and password do not match');
 
         }
 
