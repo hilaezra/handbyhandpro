@@ -89,7 +89,7 @@ const SignUpPage = () => {
                 <input className="text-field" name='gender' value={gender} onChange={handleGenderChange} />
             </div>
             <div>
-                <label className="login-lab" htmlFor="birthday">Birthday: </label>
+                <label className="login-lab" htmlFor="birthday">Birth day: </label>
                 <input className="text-field" name='birthday' value={birthday} onChange={handleBirthdayChange} />
             </div>
             <div>

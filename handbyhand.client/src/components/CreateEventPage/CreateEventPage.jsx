@@ -45,17 +45,13 @@ const CreateEventPage = () => {
   const handleCreateEventClicked = async () => {
    
     const response = await axios.post("http://localhost:3000/auth/createevent", {
-         //author: author,  - dont nreed to be send!!
-         //lastname: lastname, - dont nreed to be send!!
          eventType: eventType,
          eventTitle: eventTitle,
          content: content,
          startDate: startDate,
          endDate: endDate,
          AuthorIsParticipant:AuthorIsParticipant
-        //reviews:reviews  - dont nreed to be send!!
 
-    // })
   });
 }
 
