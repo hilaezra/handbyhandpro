@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './LoginPage.css';
 
 
@@ -20,57 +20,72 @@ const LoginPage = () => {
     }
 
     const handleLoginClicked = async () => {
+        console.log('handleLoginClicked');
+        try {
+            const response = await axios.post("http://localhost:3000/auth/login", {
+                username: username,
+                password: password
+            })
 
-        const response = await axios.post("http://localhost:3000/auth/login", {
-            username: username,
-            password: password
-        })
+            console.log(response.status);
+            if (response.status == 200)
+                navigate("/home");
 
-        if(response.status == 200)
-            navigate("/home"); 
+            else {
+                console.log('status 400 +');
+                return alert('All details are required');
+            }
+
+        } catch (error) {
+            return alert('the password or the username in correct');
+
+        }
+
+
+
     }
 
     const navigate = useNavigate();
-    const handleSignUpClicked = () => {    
-        navigate('/signup');    
-    }    
+    const handleSignUpClicked = () => {
+        navigate('/signup');
+    }
 
     //TODO
     const handleConnectWithFacebookClicked = async () => {
-      
+
     }
 
     return (
         <div>
-      
-            <img src='../../AppImages/logo-hand-by-hand.png'/>
-            <h1 id = "login-title">Hand By Hand</h1>
+
+            <img src='../../AppImages/logo-hand-by-hand.png' />
+            <h1 id="login-title">Hand By Hand</h1>
             <div className='login-text'>
                 <div>
-                <label className="login-lab" htmlFor="username">Username</label>
-                <input className="text-field" name='username' value={username} onChange={handleUsernameChange} />
-            </div>
-            <div>
-                <label className="login-lab" htmlFor="password">Password</label>
-                <input className="text-field" name='password' type='password' value={password} onChange={handlePasswordChange} />
-            </div>
-            
-            <div>
-            <button class="login-btn " type="submit" onClick={handleLoginClicked}>Login</button>
-            </div>
+                    <label className="login-lab" htmlFor="username">Username</label>
+                    <input className="text-field" name='username' value={username} onChange={handleUsernameChange} />
+                </div>
+                <div>
+                    <label className="login-lab" htmlFor="password">Password</label>
+                    <input className="text-field" name='password' type='password' value={password} onChange={handlePasswordChange} />
+                </div>
 
-            <span/>
+                <div>
+                    <button className="login-btn " type="submit" onClick={handleLoginClicked}>Login</button>
+                </div>
 
-            <div>
-            <button class="login-btn " type="submit" onClick={handleSignUpClicked}>Sign Up</button>
+                <span />
+
+                <div>
+                    <button className="login-btn " type="submit" onClick={handleSignUpClicked}>Sign Up</button>
+                </div>
+
+                <span />
+
+                <div>
+                    <button className="login-btn " type="submit" onClick={handleConnectWithFacebookClicked}>Connect with Facebook</button>
+                </div>
             </div>
-
-            <span/>
-
-            <div>
-            <button class="login-btn " type="submit" onClick={handleConnectWithFacebookClicked}>Connect with Facebook</button>
-            </div>
-            </div> 
         </div>
     )
 }
