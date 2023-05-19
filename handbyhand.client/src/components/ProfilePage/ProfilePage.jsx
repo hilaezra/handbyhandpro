@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import './ProfilePage.css';
 
-const ProfilePage = async () => {
+const ProfilePage = () => {
 
   //Get the conected user from server
   //TODO- CREATE THE REQUEST IN THE SERVER

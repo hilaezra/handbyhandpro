@@ -2,7 +2,6 @@ import React from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import './LoginPage.css';
-import '../General/Alert.css'
 
 
 const LoginPage = () => {
