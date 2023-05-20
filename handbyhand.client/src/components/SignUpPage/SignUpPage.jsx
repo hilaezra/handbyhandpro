@@ -57,6 +57,7 @@ const SignUpPage = () => {
     const navigate = useNavigate();
     const handleSignUpClicked = async () => {
 
+        
         const response = await axios.post("http://localhost:3000/auth/signup", {
             firstname: firstname,
             lastname: lastname,
@@ -90,7 +91,7 @@ const SignUpPage = () => {
             </div>
             <div>
                 <label className="login-lab" htmlFor="birthday">Birth day: </label>
-                <input className="text-field" name='birthday' value={birthday} onChange={handleBirthdayChange} />
+                <input className="text-field" name='birthday' type="date" value={birthday} onChange={handleBirthdayChange} />
             </div>
             <div>
                 <label className="login-lab" type="email" htmlFor="email">Email: </label>

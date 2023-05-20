@@ -1,0 +1,52 @@
+.profilepage-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.profilepage-form {
+    margin-top: 360px;
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    padding: 20px;
+    border: none;
+}
+
+.profilepage-form h1 {
+    font-size: 70px;
+    color: #94B49F;
+    font-weight: bolder;
+    font-family: 'Luckiest Guy', cursive;
+    letter-spacing: 4px;
+    text-align: center;
+    margin-bottom: 20px;
+    top: 100px;
+    /* set to the height of your navbar */
+    left: 0;
+    width: 100%;
+    height: 60px;
+    /* adjust as needed */
+    justify-content: center;
+    align-items: center;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-group h5{
+text-align: left;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+}
