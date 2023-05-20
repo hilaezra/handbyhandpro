@@ -15,7 +15,7 @@ module.exports = {
             if(!user.firstname|| !user.lastname || !user.email || !user.facebookuser || !user.username || !user.password || !user.gender || !user.birthday) 
             {
                 console.log('Missing registration details'); //for checking!
-                return res.status(400).json({'message' : 'Missing registration details'});
+                return res.status(400).json({ error: "Missing registration details"});
             } 
             
             // check if user already exist in our database
@@ -23,13 +23,14 @@ module.exports = {
             
             if (oldUser) {
               console.log("User Already Exist. Please Login");
-              return res.status(409).send("User Already Exist. Please Login");}
+              return res.status(409).json({ error:"User Already Exist. Please Login"});}
         
             // check if username already exist in our database
             const inUseUsername = await Users.findOne({ username: user.username });
             if (inUseUsername) {
               console.log("Username Already Exist. Please choose other username");
-              return res.status(409).send("Username Already Exist. Please choose other username");}
+              return res.status(409).json({ error: "Username Already Exist. Please choose other username"});
+            }
         
             // Create user in our database
             user.email.toLowerCase();
