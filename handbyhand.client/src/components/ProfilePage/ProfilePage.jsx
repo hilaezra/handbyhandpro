@@ -33,14 +33,17 @@ const ProfilePage = () => {
 //     console.error(error);
 //   });
 
+//test
 const user= {
   firstname:"Yuval",
   lastname: "Ohana",
   birthdate: "08/06/1998",
   gender: "female",
-  email:"yuval@gmail.com",
+  email:"yuval6898@gmail.com",
+  skills:["makeup Artist","baker", "amazing"]
 
 }
+
   return (
     <div className="profilepage-container">
 

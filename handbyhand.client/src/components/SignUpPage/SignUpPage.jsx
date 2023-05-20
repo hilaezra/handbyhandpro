@@ -57,21 +57,28 @@ const SignUpPage = () => {
     const navigate = useNavigate();
     const handleSignUpClicked = async () => {
 
-        
-        const response = await axios.post("http://localhost:3000/auth/signup", {
-            firstname: firstname,
-            lastname: lastname,
-            gender: gender,
-            birthday: birthday,
-            email: email,
-            facebookuser: facebookuser,
-            username: username,
-            password: password
-        }) 
+        try {
+            const response = await axios.post("http://localhost:3000/auth/signup", {
+                firstname: firstname,
+                lastname: lastname,
+                gender: gender,
+                birthday: birthday,
+                email: email,
+                facebookuser: facebookuser,
+                username: username,
+                password: password
+            }) 
 
-        if(response.status == 200)
+            if(response.status == 200)
             navigate("/home"); 
-        //else //todo!    
+        //else //todo!  
+        
+        } catch (error) {
+            const errorMsg = error.response.data.error
+            return alert(errorMsg);
+        }
+        
+         
 
     }
 

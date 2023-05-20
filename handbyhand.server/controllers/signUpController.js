@@ -20,6 +20,7 @@ module.exports = {
             
             // check if user already exist in our database
             const oldUser = await Users.findOne({ email: user.email });
+            
             if (oldUser) {
               console.log("User Already Exist. Please Login");
               return res.status(409).send("User Already Exist. Please Login");}
