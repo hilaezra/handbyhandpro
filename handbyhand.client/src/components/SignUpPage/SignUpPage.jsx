@@ -61,6 +61,8 @@ const SignUpPage = () => {
         const response = await axios.post("http://localhost:3000/auth/signup", {
             firstname: firstname,
             lastname: lastname,
+            gender: gender,
+            birthday: birthday,
             email: email,
             facebookuser: facebookuser,
             username: username,
