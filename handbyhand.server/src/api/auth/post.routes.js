@@ -6,12 +6,18 @@ const router = express.Router();
 const CreatePostController = require("../../../controllers/createPostController");
 const { adminAuth, userAuth } = require("./auth.js");
 
+
+router.route('/getAllPosts').get(async (req, res)=>{
+   try { 
+        const posts = await Posts.find({}); 
+        return res.status(200).json(posts); 
+    } 
+    catch (err) { 
+        res.status(500).json(err);
+    }
+})
+
 router.route('/createevent').post(userAuth, async (req, res) => { 
-    //console.log(req.body)
-    //CreatePostController.createPost
-    //console.log("req.body")
-    //console.log(req.body)
-    ////////////////////////////////////////////////////
 
     try
     {
@@ -61,11 +67,6 @@ router.route('/createevent').post(userAuth, async (req, res) => {
         console.log(err);
         return res.status(500).json({'message' : err.message });
     }
-
-    return res.status(400).send("Invalid Credentials");
-
-    ////////////////////////////////////////////////////
-    //return res.status(200).json({ message: "Successful"});
 });
 
 module.exports = router;

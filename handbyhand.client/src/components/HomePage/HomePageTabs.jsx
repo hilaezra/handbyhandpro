@@ -1,40 +1,64 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Tab, Tabs } from 'react-bootstrap';
 import './HomePageTabs.css'
-
-// //test
-// import Post from "../../../../handbyhand.server/models/PostModel"
+import axios from 'axios'
+import Post from '../General/Post';
 
 const MyTabs = () => {
-    // //testing
-    // const post = {
-    //     tab: 'social',
-    //     title: 'My first post',
-    //     author: 'John Doe',
-    //     content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lobortis metus a risus euismod gravida.',
-    //     participants: 'yuval ohana',
-    //     reviews: 'good'
 
-    // };
+    const [posts, setPosts] = useState([]);
 
-    // const post2 = {
-    //     tab: 'Volunteer',
-    //     title: 'My post',
-    //     author: 'yuval',
-    //     content: 'i bla bla bla',
-    //     participants: 'hila',
-    //     reviews: 'good good'
+    useEffect( () => {
 
-    // };
+        fetch('http://localhost:3000/post/getAllPosts')
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+            setPosts(data)
+            console.log(posts)
+            console.log("Data has been recieved")
+        }).catch(err => {
+            console.log(err)
+        })
+        /*axios.get("http://localhost:3000/post/getAllPosts")
+        .then(response => response.json())
+        .then((response) => {
+            console.log(data)
+            const data = response.data
+            setPosts(data)
+            console.log("Data has been recieved")
+        }).catch(err => {
+            console.log(err)
+        })*/
+    }, []) 
 
+    /*displayAllPosts = (postsArr) => {
+
+        if(!postsArr.length) return null;
+
+        return postsArr.map((post, index) => {
+            <div key={index}>
+                <h3>{post.eventTitle}</h3>
+                <p>{post.content}</p>
+            </div>
+        })
+    }*/
 
     return (
-        <div class="events">
+        <div className="events">
             <Tabs defaultActiveKey="tab1" id="my-tabs">
                 <Tab eventKey="tab1" title="All">
-                    {/* <Post post={post} /> 
-                    <Post post={post2} />  */}
-
+                    
+                    {      
+                    posts.map((post) => (
+                        <div>
+                            <Post post={post}/>
+                            {/* <p>{post.eventTitle}</p>
+                            <p>{post.content}</p> */}
+                        </div>
+                    ))              
+                    }
+                   
                 </Tab>
                 <Tab eventKey="tab2" title="Social">
                     <p>This is the content of Tab 2</p>
@@ -51,13 +75,3 @@ const MyTabs = () => {
 }
 
 export default MyTabs;
-
-
-
-
-
-
-
-
-
-

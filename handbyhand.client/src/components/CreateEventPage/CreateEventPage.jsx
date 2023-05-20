@@ -51,8 +51,10 @@ const CreateEventPage = () => {
          startDate: startDate,
          endDate: endDate,
          AuthorIsParticipant:AuthorIsParticipant
-
   });
+
+  //TODO- present new post at home page! :) 
+  //
 }
 
   return (
