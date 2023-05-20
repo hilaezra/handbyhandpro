@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import axios from "axios"
 import './CreateEventPage.css'
 
 
@@ -43,15 +44,20 @@ const CreateEventPage = () => {
   };
 
   const handleCreateEventClicked = async () => {
-   
-    const response = await axios.post("http://localhost:3000/auth/createevent", {
-         eventType: eventType,
-         eventTitle: eventTitle,
-         content: content,
-         startDate: startDate,
-         endDate: endDate,
-         AuthorIsParticipant:AuthorIsParticipant
-  });
+    try {      
+      const response = await axios.post("http://localhost:3000/auth/createevent", {
+           eventType: eventType,
+           eventTitle: eventTitle,
+           content: content,
+           startDate: startDate,
+           endDate: endDate,
+           AuthorIsParticipant:AuthorIsParticipant
+    });
+    console.log(res)
+    } catch (error) {
+      debugger
+      console.log(error)
+    }
 
   //TODO- present new post at home page! :) 
   //
