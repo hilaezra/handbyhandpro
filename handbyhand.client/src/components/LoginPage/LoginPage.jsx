@@ -21,23 +21,23 @@ const LoginPage = () => {
 
     const handleLoginClicked = async () => {
         console.log('handleLoginClicked');
-        try {
-            const response = await axios.post("http://localhost:3000/auth/login", {
-                username: username,
-                password: password
-            })
-
-            console.log(response.status);
-            if (response.status == 200)
-                navigate("/home");
-
-            else {
-                console.log('status 400 +');
-                return alert('All details are required');
+        try {            
+            if (username && password) {
+                const response = await axios.post("http://localhost:3000/auth/login", {
+                    username: username,
+                    password: password
+                })
+    
+                console.log(response.status);
+                if (response.status == 200)
+                    navigate("/home");
+            } else {
+                alert("please provide user name and password")
             }
 
         } catch (error) {
-            return alert('Username and password do not match');
+            const errorMsg = error.response.data.error
+            return alert(errorMsg);
 
         }
 

@@ -41,7 +41,7 @@ module.exports = {
 
         return res.status(200).json(user);
       } else {
-        return res.status(400).send("Invalid Credentials");
+        return res.status(400).json({ error: "Invalid Credentials"});
       }
     } catch (err) {
       console.log(err);

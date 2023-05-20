@@ -6,8 +6,11 @@ const cors = require('cors')
 const authenticationRoutes = require("./src/api/auth/auth.routes")
 const postsRoutes = require("./src/api/auth/post.routes")
 const mongoose = require('mongoose');
+//const { authMiddleware } = require('./middleware/auth.middleware');
 const app = express()
-const port = process.env.PORT
+const port = 3000
+// const port = process.env.PORT
+console.log("port:", port)
 app.use(express.json());
 
 

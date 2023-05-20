@@ -17,8 +17,21 @@ router.route('/getAllPosts').get(async (req, res)=>{
     }
 })
 
-router.route('/createevent').post(userAuth, async (req, res) => { 
+router.route('/getSocialPosts').get(async (req, res)=>{
+    try { 
+         const posts = await Posts.find({eventType: "Social"}); 
+         console.log("social event:")
+         console.log(posts)
 
+         return res.status(200).json(posts); 
+     } 
+     catch (err) { 
+         res.status(500).json(err);
+     }
+ })
+
+router.route('/createevent').post(userAuth, async (req, res) => { 
+    console.log("kncsdncksndcksnds")
     try
     {
         //Get user input of the event
@@ -45,7 +58,8 @@ router.route('/createevent').post(userAuth, async (req, res) => {
         }
       
         //create new post
-        post.author = author;
+        post.authorID = author;
+        post.authorName = author.username;
         if(post.AuthorIsParticipant == "true"){
             post.participants=author;
         }else{
