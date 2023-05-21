@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import {useNavigate} from 'react-router-dom';
 import './CreateEventPage.css'
 
 axios.defaults.withCredentials = true
@@ -43,6 +44,7 @@ const CreateEventPage = () => {
     setAuthorIsParticipant(!AuthorIsParticipant);
   };
 
+  const navigate = useNavigate();
   const handleCreateEventClicked = async (e) => {
     try {
       e.preventDefault()
@@ -55,6 +57,9 @@ const CreateEventPage = () => {
            endDate: endDate, 
            AuthorIsParticipant:AuthorIsParticipant
     }, { withCredentials: true });
+
+      if(response.status == 200)
+      navigate("/home"); 
     } catch (error) {
       console.log(error)
     }
