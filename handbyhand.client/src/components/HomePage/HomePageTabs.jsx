@@ -17,10 +17,7 @@ const MyTabs = () => {
         fetch('http://localhost:3000/post/getAllPosts')
             .then(response => response.json())
             .then(data => {
-                console.log(data)
                 setPosts(data)
-                console.log(posts)
-                console.log("Data has been recieved")
             }).catch(err => {
                 console.log(err)
             })
@@ -40,10 +37,31 @@ const MyTabs = () => {
         fetch('http://localhost:3000/post/getSocialPosts')
             .then(response => response.json())
             .then(data => {
-                console.log(data)
                 setSocialPosts(data)
-                console.log(socialPosts)
-                console.log("Data has been recieved")
+            }).catch(err => {
+                console.log(err)
+            })
+
+    }, [])
+
+    useEffect(() => {
+
+        fetch('http://localhost:3000/post/getVolunteerPosts')
+            .then(response => response.json())
+            .then(data => {
+                setVolunteerPosts(data)
+            }).catch(err => {
+                console.log(err)
+            })
+
+    }, [])
+
+    useEffect(() => {
+
+        fetch('http://localhost:3000/post/getContributionPosts')
+            .then(response => response.json())
+            .then(data => {
+                setContributionPosts(data)
             }).catch(err => {
                 console.log(err)
             })
@@ -72,10 +90,22 @@ const MyTabs = () => {
                     }
                 </Tab>
                 <Tab eventKey="tab3" title="Volunteer">
-                    <p>This is the content of Tab 3</p>
+                {
+                        volunteerPosts.map((post, index) => (
+                            <div key={index}>
+                                <Post post={post} />
+                            </div>
+                        ))
+                    }
                 </Tab>
                 <Tab eventKey="tab4" title="Contribution">
-                    <p>This is the content of Tab 4</p>
+                {
+                        contributionPosts.map((post, index) => (
+                            <div key={index}>
+                                <Post post={post} />
+                            </div>
+                        ))
+                    }
                 </Tab>
             </Tabs>
         </div>

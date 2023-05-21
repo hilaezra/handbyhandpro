@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import './LoginPage.css';
 
-
+axios.defaults.withCredentials = true
 const LoginPage = () => {
 
     const [username, setUsername] = React.useState("")
@@ -19,7 +19,8 @@ const LoginPage = () => {
         setPassword(e.target.value)
     }
 
-    const handleLoginClicked = async () => {
+    const handleLoginClicked = async (e) => {
+        e.preventDefault()
         console.log('handleLoginClicked');
         try {            
             if (username && password) {
@@ -36,9 +37,7 @@ const LoginPage = () => {
             }
 
         } catch (error) {
-            const errorMsg = error.response.data.error
-            return alert(errorMsg);
-
+            return alert(error.message);
         }
 
 

@@ -23,6 +23,8 @@ exports.adminAuth = (req, res, next) => {
 }
 
 exports.userAuth = (req, res, next) => {
+  console.log("Incoming user authentication attempt")
+
     const token = req.cookies.jwt
     if (token) {
       jwt.verify(token, jwtSecret, (err, decodedToken) => {

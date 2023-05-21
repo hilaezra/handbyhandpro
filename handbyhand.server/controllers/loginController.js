@@ -11,7 +11,6 @@ module.exports = {
 
       // Validate user input
       console.log(!(username && password));
-      
       if (!(username && password)) {
         console.log(username);//for debug
         return res.status(400).json({ 'message': "All input is required" });

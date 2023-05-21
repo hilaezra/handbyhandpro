@@ -20,8 +20,29 @@ router.route('/getAllPosts').get(async (req, res)=>{
 router.route('/getSocialPosts').get(async (req, res)=>{
     try { 
          const posts = await Posts.find({eventType: "Social"}); 
-         console.log("social event:")
-         console.log(posts)
+
+
+         return res.status(200).json(posts); 
+     } 
+     catch (err) { 
+         res.status(500).json(err);
+     }
+ })
+
+ router.route('/getVolunteerPosts').get(async (req, res)=>{
+    try { 
+         const posts = await Posts.find({eventType: "Volunteer"}); 
+
+         return res.status(200).json(posts); 
+     } 
+     catch (err) { 
+         res.status(500).json(err);
+     }
+ })
+
+ router.route('/getContributionPosts').get(async (req, res)=>{
+    try { 
+         const posts = await Posts.find({eventType: "Contribution"}); 
 
          return res.status(200).json(posts); 
      } 
@@ -31,13 +52,10 @@ router.route('/getSocialPosts').get(async (req, res)=>{
  })
 
 router.route('/createevent').post(userAuth, async (req, res) => { 
-    console.log("kncsdncksndcksnds")
     try
     {
         //Get user input of the event
         const post = req.body;
-        console.log("firstttttt");
-        console.log(post);
 
         //Validate event input
         if(!(post.eventType && post.eventTitle && post.content && post.startDate && post.endDate))
@@ -47,10 +65,8 @@ router.route('/createevent').post(userAuth, async (req, res) => {
         }
 
         const userToken = req.cookies.jwt;
-        console.log(userToken);
         const decodedToken = jwt.decode(userToken);
         const author = await Users.findOne({ email: decodedToken.email });
-        console.log(author);
         if (!author) 
         {
             console.log("Token and author not found in DB!");
@@ -70,10 +86,7 @@ router.route('/createevent').post(userAuth, async (req, res) => {
         post.reviews= null;
         const newPost = new Posts(post);
         await newPost.save();
-        console.log("secondddddddd");
-        console.log(newPost);   //check
-        console.log('New post created'); //check
-
+        res.setHeader("Access-Control-Allow-Origin", "*")
         return res.status(200).json(newPost);  
     }
     catch(err)
