@@ -9,13 +9,6 @@ module.exports = {
       // Get user input
       const { username, password } = req.body;
 
-      // Validate user input
-      console.log(!(username && password));
-      if (!(username && password)) {
-        console.log(username);//for debug
-        return res.status(400).json({ 'message': "All input is required" });
-      }
-
       // Validate if user exist in our database
       const user = await Users.findOne({ username });
 
@@ -36,11 +29,13 @@ module.exports = {
           maxAge: maxAge * 1000, // 3hrs in ms
         });
 
-        console.log("user login:)");
+        console.log("user",user.firstname, "login :)");
 
         return res.status(200).json(user);
-      } else {
-        return res.status(400).json({ error: "Invalid Credentials"});
+      } 
+      
+      else {
+        return res.status(400).json({ error: "Unregistered user, please sign up"});
       }
     } catch (err) {
       console.log(err);

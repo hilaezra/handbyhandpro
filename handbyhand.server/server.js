@@ -5,6 +5,8 @@ const cookieParser = require("cookie-parser");
 const cors = require('cors')
 const authenticationRoutes = require("./src/api/auth/auth.routes")
 const postsRoutes = require("./src/api/auth/post.routes")
+const profileRoutes = require("./src/api/profile/profile.routes")
+
 const mongoose = require('mongoose');
 //const { authMiddleware } = require('./middleware/auth.middleware');
 const app = express()
@@ -57,6 +59,8 @@ app.use((req, res, next) => {
 // });
 app.use("/auth", authenticationRoutes)
 app.use("/post", postsRoutes)
+app.use("/profile", profileRoutes)
+
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
