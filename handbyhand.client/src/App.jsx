@@ -15,7 +15,6 @@ function App() {
 
   const location = useLocation();
   const [loggedIn, setLoggedIn] = useState(false);
-
   // logic to set the loggedIn state based on user authentication status
   // ...
 
@@ -42,7 +41,6 @@ function App() {
       </div>
     );
   }
-
   else if(location.pathname == '/signup') {
     return (
       <div className="App">

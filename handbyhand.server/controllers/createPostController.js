@@ -5,6 +5,7 @@ module.exports = {
     createPost: async (req, res) => {
         try
         {
+            res.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:5173" )
             console.log("firstttttt");
 
             //Get user input of the event
