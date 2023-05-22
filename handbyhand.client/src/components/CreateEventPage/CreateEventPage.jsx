@@ -77,7 +77,8 @@ const CreateEventPage = () => {
         <form>
           <div className="author form-group">
             <label className="textfield-lab" htmlFor="author">Author: </label>
-            <label className="login-lab" htmlFor="author">{getConectedUser}</label>
+            <label className="login-lab" htmlFor="author">Yuval Ohana</label>
+            {/* <label className="login-lab" htmlFor="author">{getConectedUser}</label> */}
           </div>
 
           <div className="event-type form-group">

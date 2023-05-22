@@ -6,7 +6,7 @@
 }
 
 .createevent-form {
-    margin-top: 360px;
+    margin-top: 400px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -77,3 +77,4 @@
     width: 550px;
     height: 200px; 
 }
+

@@ -85,36 +85,36 @@ const SignUpPage = () => {
     return (
         <div>
             <h1 id = "sign-up-title">Sign Up</h1>
-             <form className="form">
-            <div>
+             <form className="signup-form">
+            <div className="form-group">
                 <label className="login-lab" htmlFor="firstname">First name: </label>
                 <input className="text-field" name='firstname' value={firstname} onChange={handleFirstnameChange} />
             </div>
-            <div>
+            <div className="form-group"> 
                 <label className="login-lab" htmlFor="lastname">Last name: </label>
                 <input className="text-field" name='lastname' value={lastname} onChange={handleLastnameChange} />
             </div>
-            <div>
+            <div className="form-group">
                 <label className="login-lab" htmlFor="gender">Gender: </label>
                 <input className="text-field" name='gender' value={gender} onChange={handleGenderChange} />
             </div>
-            <div>
+            <div className="form-group">
                 <label className="login-lab" htmlFor="birthday">Birth day: </label>
                 <input className="text-field" name='birthday' type="date" value={birthday} onChange={handleBirthdayChange} />
             </div>
-            <div>
+            <div className="form-group">
                 <label className="login-lab" type="email" htmlFor="email">Email: </label>
                 <input className="text-field" name='email' value={email} onChange={handleEmailChange} />
             </div>
-            <div>
+            <div className="form-group">
                 <label className="login-lab" htmlFor="facebookuser">Facebook username: </label>
                 <input className="text-field" name='facebookuser' value={facebookuser} onChange={handleFacebookuserChange} />
             </div>
-            <div>
+            <div className="form-group">
                 <label className="login-lab" htmlFor="username">Username: </label>
                 <input className="text-field" name='username' value={username} onChange={handleUsernameChange} />
             </div>
-            <div>
+            <div className="form-group">
                 <label className="login-lab" htmlFor="password">Psassword:</label>
                 <input className="text-field" name='password' type='password' value={password} onChange={handlePasswordChange} />
             </div>

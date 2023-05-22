@@ -51,7 +51,7 @@ const user= {
         <h1 id="profile-page-title">My Profile</h1>
 
         <form>
-          <div className="about form-group">
+          <div className="about form-group-profile">
             <h5 id="profile-page-title">About</h5>
             <label className="textfield-lab" htmlFor="firstname">First name: </label>
             <label className="user-details" htmlFor="author">{user.firstname}</label>
@@ -63,7 +63,7 @@ const user= {
             <label className="user-details" htmlFor="author">{user.gender}</label>
           </div>
 
-          <div className="contact-info form-group">
+          <div className="contact-info form-group-profile">
             <h5 id="profile-page-title">Contact info</h5>
             <label className="textfield-lab" htmlFor="author">Email: </label>
             <label className="user-details" htmlFor="author">{user.email}</label>
@@ -71,15 +71,15 @@ const user= {
             <label className="user-details" htmlFor="author">{user.mobile}</label> */}
           </div>
 
-          <div className="skills form-group">
+          <div className="skills form-group-profile">
             <h5 id="profile-page-title">Skills</h5>
           </div>
 
-          <div className="future-events form-group">
+          <div className="future-events form-group-profile">
             <h5 id="profile-page-title">Events I'm going to attend</h5>
           </div>
 
-          <div className="past-events form-group">
+          <div className="past-events form-group-profile">
             <h5 id="profile-page-title">Events I attended</h5>
           </div>
 

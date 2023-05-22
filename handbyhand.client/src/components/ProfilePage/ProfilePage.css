@@ -6,7 +6,7 @@
 }
 
 .profilepage-form {
-    margin-top: 360px;
+    margin-top: 440px;
     display: flex;
     flex-direction: column;
     width: 600px;
@@ -32,7 +32,7 @@
     align-items: center;
 }
 
-.form-group {
+.form-group-profile {
     display: flex;
     flex-direction: column;
     justify-content: right;
@@ -43,10 +43,10 @@
     border-radius: 5px;
 }
 
-.form-group h5{
+.form-group-profile h5{
 text-align: left;
 }
 
-.form-group label {
+.form-group-profile label {
     margin-bottom: 5px;
 }
