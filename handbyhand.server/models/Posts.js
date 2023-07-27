@@ -9,7 +9,9 @@ const postSchema = new Schema ({
     eventTitle: {type: String, required: true},
     content: {type: String, required: true},
     startDate: {type: Date, required: true},
+    startTime: {type:String,required: true},
     endDate: {type: Date, required: true},
+    endTime: {type:String,required: true},
     participants: [{type: Schema.Types.ObjectId, ref: 'Users', required: false}],
     reviews: [{
           user: {type: Schema.Types.ObjectId, ref: 'User', required: false},

@@ -10,7 +10,9 @@ const CreateEventPage = () => {
   const [eventTitle, setEventTitle] = useState('');
   const [content, setContent] = useState('');
   const [startDate, setStartDate] = useState('');
+  const [startTime, setStartTime] = useState('');
   const [endDate, setEndDate] = useState('');
+  const [endTime, setEndTime] = useState('');
   const [AuthorIsParticipant, setAuthorIsParticipant] = useState(true);
 
   //TODO- send request and return the connected user (i dont know if its right Syntax)
@@ -36,8 +38,16 @@ const CreateEventPage = () => {
     setStartDate(event.target.value);
   };
 
+  const handleStartTimeChange = (event) => {
+    setStartTime(event.target.value);
+  };
+
   const handleEndDateChange = (event) => {
     setEndDate(event.target.value);
+  };
+
+  const handleEndTimeChange = (event) => {
+    setEndTime(event.target.value);
   };
 
   const handleCheckboxChange = () => {
@@ -48,16 +58,19 @@ const CreateEventPage = () => {
   const handleCreateEventClicked = async (e) => {
     try {
       e.preventDefault()
-      console.log("hiiii ")
+      console.log("send the request :)")
       const response = await axios.post('http://localhost:3000/post/createevent',  {
            eventType: eventType,
            eventTitle: eventTitle,
            content: content,
            startDate: startDate,
+           startTime: startTime,
            endDate: endDate, 
+           endTime: endTime,
            AuthorIsParticipant:AuthorIsParticipant
     }, { withCredentials: true });
 
+    console.log("response status:"+response.status)
       if(response.status == 200)
       navigate("/home"); 
     } catch (error) {
@@ -103,11 +116,13 @@ const CreateEventPage = () => {
           <div className="start-date form-group">
             <label className="textfield-lab" htmlFor="start-date">Start Date: </label>
             <input className="text-field" type="date" value={startDate} onChange={handleStartDateChange} />
+            <input className="text-field" type="time" id="time" value={startTime} onChange={handleStartTimeChange}/>
           </div>
 
           <div className="end-date form-group">
             <label className="textfield-lab" htmlFor="start-date">End Date: </label>
             <input className="text-field" type="date" value={endDate} onChange={handleEndDateChange} />
+            <input className="text-field" type="time" id="time" value={endTime} onChange={handleEndTimeChange}/>
           </div>
 
           <div className="participants form-group">
