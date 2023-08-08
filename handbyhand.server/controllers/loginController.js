@@ -4,6 +4,8 @@ const express = require('express');
 
 module.exports = {
   login: async (req, res) => {
+    console.log("login process starts");
+
     try {
       const maxAge = 3 * 60 * 60;
       // Get user input
@@ -12,7 +14,7 @@ module.exports = {
       // Validate if user exist in our database
       const user = await Users.findOne({ username });
 
-      if (user && password === user.password) {
+      if (user && (password === user.password)) {
         // Create token
         const token = jwt.sign(
           { user_id: user._id, email: user.email, role: user.role },
@@ -21,6 +23,9 @@ module.exports = {
             expiresIn: maxAge,
           }
         );
+
+        console.log("before token");
+
 
         // save user token
         user.token = token;
