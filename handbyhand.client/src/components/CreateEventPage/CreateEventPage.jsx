@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import {useNavigate} from 'react-router-dom';
 import './CreateEventPage.css'
+import LocationInput from '../General/LocationInput';
 
 axios.defaults.withCredentials = true
 
@@ -9,6 +10,7 @@ const CreateEventPage = () => {
   const [eventType, setEventType] = useState('Social'); //set the first option as defult
   const [eventTitle, setEventTitle] = useState('');
   const [content, setContent] = useState('');
+  const [location, setLocation] = useState('');
   const [startDate, setStartDate] = useState('');
   const [startTime, setStartTime] = useState('');
   const [endDate, setEndDate] = useState('');
@@ -54,6 +56,11 @@ const CreateEventPage = () => {
     setAuthorIsParticipant(!AuthorIsParticipant);
   };
 
+  const handleSelectLocation = (event) => {
+    setLocation(event.target.value)
+    console.log('Selected Location:', location);
+  };
+
   const navigate = useNavigate();
   const handleCreateEventClicked = async (e) => {
     try {
@@ -63,6 +70,7 @@ const CreateEventPage = () => {
            eventType: eventType,
            eventTitle: eventTitle,
            content: content,
+           location: location,
            startDate: startDate,
            startTime: startTime,
            endDate: endDate, 
@@ -111,6 +119,12 @@ const CreateEventPage = () => {
           <div className="event-content form-group">
             <label className="textfield-lab" htmlFor="facebookuser">Content: </label>
             <textarea className="text-field content" value={content} onChange={handleContentChange} />
+          </div>
+
+          <div className="event-title form-group">
+            <label className="textfield-lab" htmlFor="event-location">Location: </label>
+            {/* <input className="text-field" value={eventLocation} onChange={handleEventLocationChange} /> */}
+            <LocationInput className="text-field" value={location} onSelectLocation={handleSelectLocation} />
           </div>
 
           <div className="start-date form-group">

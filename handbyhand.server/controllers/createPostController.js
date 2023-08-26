@@ -14,7 +14,7 @@ module.exports = {
             console.log(post);
 
             //Validate event input
-            if(!(eventType && eventTitle && content && startDate && startTime && endTime && endDate))
+            if(!(eventType && eventTitle && content && startDate && startTime && endTime && endDate && location))
             {
                 console.log('Missing event details'); //check details!
                 return res.status(400).json({'message' : 'Missing event details'});
