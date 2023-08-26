@@ -8,6 +8,7 @@ const postSchema = new Schema ({
     eventType: {type: String, required: true},
     eventTitle: {type: String, required: true},
     content: {type: String, required: true},
+    location: {type: String, required: true},
     startDate: {type: Date, required: true},
     startTime: {type:String,required: true},
     endDate: {type: Date, required: true},
