@@ -5,7 +5,7 @@ const router = express.Router();
 const { userAuth } = require("../auth/auth.js");
  
  router.route('/getUser').get( async (req, res) => { 
- 
+
      try
      {
          const userToken = req.cookies.jwt;

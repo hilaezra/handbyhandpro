@@ -22,26 +22,37 @@ const LoginPage = () => {
     const handleLoginClicked = async (e) => {
         e.preventDefault()
         console.log('handleLoginClicked');
+        
         try {            
-            if (username && password) {
+            if (username && password) 
+            {
                 const response = await axios.post("http://localhost:3000/auth/login", {
                     username: username,
                     password: password
                 })
     
-                console.log(response.status);
-                if (response.status == 200)
+                if (response.status === 200)
+                {
+                    console.log(response.data); /////
+                    const data = response.data; /////
+                    localStorage.setItem('token', data.token); /////
+                    
                     navigate("/home");
-            } else {
+                }
+                else
+                {
+                    console.log(response.error);
+                    alert("please provide user name and password")
+                }
+            } 
+            else 
+            {
                 alert("please provide user name and password")
             }
 
         } catch (error) {
             return alert(error.message);
         }
-
-
-
     }
 
     const navigate = useNavigate();

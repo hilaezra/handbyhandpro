@@ -6,6 +6,8 @@ const router = express.Router();
 const CreatePostController = require("../../../controllers/createPostController");
 const { adminAuth, userAuth } = require("./auth.js");
 
+const secretKey = '4715aed3c946f7b0a38e6b534a9583628d84e96d10fbc04700770d572af3dce43625dd'; /////
+
 
 router.route('/getAllPosts').get(async (req, res)=>{
    try { 
@@ -51,7 +53,27 @@ router.route('/getSocialPosts').get(async (req, res)=>{
      }
  })
 
-router.route('/createevent').post(userAuth, async (req, res) => { 
+
+ function authenticateToken(req, res, next) {
+
+    const token = req.header('Authorization').replace('Bearer ', '');
+    console.log(token); /////
+
+    if (!token) {
+      return res.sendStatus(401);
+    }
+
+    jwt.verify(token, secretKey, (err, user) => {
+      if (err) {
+        console.error('Token verification error:', err);
+        return res.sendStatus(403);
+      }
+      req.user = user;
+      next();
+    });
+  }
+
+router.route('/createevent').post(authenticateToken, async (req, res) => { 
     try
     {
         //Get user input of the event
@@ -64,9 +86,11 @@ router.route('/createevent').post(userAuth, async (req, res) => {
             return res.status(400).json({'message' : 'Missing event details'});
         }
 
-        const userToken = req.cookies.jwt;
-        const decodedToken = jwt.decode(userToken);
-        const author = await Users.findOne({ email: decodedToken.email });
+        const userId = req.user.userId;/////
+        console.log(userId);/////
+        const author = await Users.findOne({ _id: userId });
+        console.log(author);/////
+
         if (!author) 
         {
             console.log("Token and author not found in DB!");
@@ -86,7 +110,8 @@ router.route('/createevent').post(userAuth, async (req, res) => {
         post.reviews= null;
         const newPost = new Posts(post);
         await newPost.save();
-        res.setHeader("Access-Control-Allow-Origin", "*")
+
+        console.log(newPost);
         return res.status(200).json(newPost);  
     }
     catch(err)

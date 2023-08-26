@@ -54,11 +54,13 @@ const CreateEventPage = () => {
     setAuthorIsParticipant(!AuthorIsParticipant);
   };
 
+  const jwtToken = localStorage.getItem('token');
   const navigate = useNavigate();
   const handleCreateEventClicked = async (e) => {
     try {
       e.preventDefault()
-      console.log("send the request :)")
+      console.log("send the request :)");
+      console.log(jwtToken);
       const response = await axios.post('http://localhost:3000/post/createevent',  {
            eventType: eventType,
            eventTitle: eventTitle,
@@ -68,7 +70,7 @@ const CreateEventPage = () => {
            endDate: endDate, 
            endTime: endTime,
            AuthorIsParticipant:AuthorIsParticipant
-    }, { withCredentials: true });
+    }, {headers: { Authorization: `Bearer ${jwtToken}`, }}, { withCredentials: true },);
 
     console.log("response status:"+response.status)
       if(response.status == 200)
