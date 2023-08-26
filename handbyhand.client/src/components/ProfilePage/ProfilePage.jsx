@@ -2,48 +2,28 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import './ProfilePage.css';
 
+axios.defaults.withCredentials = true
+
 const ProfilePage = () => {
-//const [user,setUser] = useState([]);
+   const [user, setUser] = useState([]);
 
-  //Get the conected user from server
-// useEffect( () => {
+   const jwtToken = localStorage.getItem('token');
+   useEffect(() => {
+    axios.get(`http://localhost:3000/profile/getUser`, {headers: { Authorization: `Bearer ${jwtToken}`, }}, { withCredentials: true },)
+      .then(response => {
+        setUser(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching user details:', error);
+      });
+  }, []);
 
-//   fetch('http://localhost:3000/profile/getUser')
-//   .then(response => response.json())
-//   .then(data => {
-//       console.log(data)
-//       setUser(data)
-//       console.log(user)
-//       console.log("Data has been recieved")
-//   }).catch(err => {
-//       console.log(err)
-//       return alert({ error });
-//   })
+  const userBirthdate = new Date(user.birthday).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
   
-//   }, [])
-
-// axios.get('http://localhost:3000/profile/getUser')
-//   .then(response => {
-//     // Handle successful response
-//     setUser(response.data);
-//     console.log(response.data);
-//   })
-//   .catch(error => {
-//     // Handle error
-//     console.error(error);
-//   });
-
-//test
-const user= {
-  firstname:"Yuval",
-  lastname: "Ohana",
-  birthdate: "08/06/1998",
-  gender: "female",
-  email:"yuval6898@gmail.com",
-  skills:["makeup Artist","baker", "amazing"]
-
-}
-
   return (
     <div className="profilepage-container">
 
@@ -58,7 +38,7 @@ const user= {
             <label className="textfield-lab" htmlFor="firstname">Last name: </label>
             <label className="user-details" htmlFor="author">{user.lastname}</label>
             <label className="textfield-lab" htmlFor="author">Birth Date: </label>
-            <label className="user-details" htmlFor="author">{user.birthdate}</label>
+            <label className="user-details" htmlFor="author">{userBirthdate}</label>
             <label className="textfield-lab" htmlFor="author">Gender: </label>
             <label className="user-details" htmlFor="author">{user.gender}</label>
           </div>

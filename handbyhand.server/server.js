@@ -1,15 +1,14 @@
 const express = require('express');
 const cors = require('cors');
-const authenticationRoutes = require("./src/api/auth/auth.routes")
-const postsRoutes = require("./src/api/auth/post.routes")
-const profileRoutes = require("./src/api/profile/profile.routes")
-
+require('dotenv').config();
+const authenticationRoutes = require("./src/api/auth/auth.routes");
+const postsRoutes = require("./src/api/auth/post.routes");
+const profileRoutes = require("./src/api/profile/profile.routes");
 const mongoose = require('mongoose');
-//const { authMiddleware } = require('./middleware/auth.middleware');
-const app = express()
-const port = 3000
-// const port = process.env.PORT
-console.log("port:", port)
+const app = express();
+
+const port = process.env.PORT;
+console.log("port:", port);
 
 app.use(express.json());
 

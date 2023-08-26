@@ -1,7 +1,6 @@
 const Users = require('../models/Users');
-const jwt = require('jsonwebtoken');  /////
-
-const secretKey = '4715aed3c946f7b0a38e6b534a9583628d84e96d10fbc04700770d572af3dce43625dd'; /////
+const jwt = require('jsonwebtoken');
+const secretKey = process.env.secretKey;
 
 module.exports = {
   login: async (req, res) => {
@@ -13,7 +12,7 @@ module.exports = {
       const { username, password } = req.body;
 
       // Validate if user exist in our database
-      const user = await Users.findOne({ username, password });
+      const user = await Users.findOne({toLowerCase(){username}, password});
 
         if (user) {
           console.log("user",user.firstname, "login :)");

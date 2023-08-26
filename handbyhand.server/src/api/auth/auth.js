@@ -1,6 +1,27 @@
 const jwt = require("jsonwebtoken")
-const jwtSecret = "4715aed3c946f7b0a38e6b534a9583628d84e96d10fbc04700770d572af3dce43625dd"
+const secretKey = process.env.secretKey; 
 
+exports.authenticateToken = (req, res, next) => {
+
+  const token = req.header('Authorization').replace('Bearer ', '');
+  console.log(token); /////
+
+  if (!token) {
+    return res.sendStatus(401);
+  }
+
+  jwt.verify(token, secretKey, (err, user) => {
+    if (err) {
+      console.error('Token verification error:', err);
+      return res.sendStatus(403);
+    }
+    req.user = user;
+    next();
+  });
+}
+
+
+//Not in use!
 exports.adminAuth = (req, res, next) => {
   const token = req.cookies.jwt
   if (token) {
@@ -22,6 +43,7 @@ exports.adminAuth = (req, res, next) => {
   }
 }
 
+//Not in use!
 exports.userAuth = (req, res, next) => {
   console.log("Incoming user authentication attempt")
 
@@ -42,4 +64,4 @@ exports.userAuth = (req, res, next) => {
       })
     } else {
       return res.status(401).json({ message: "Not authorized, token not available" })}
-  }
+  } 
