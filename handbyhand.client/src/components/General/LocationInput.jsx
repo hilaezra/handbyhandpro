@@ -1,5 +1,5 @@
 import React from 'react';
-import PlacesAutocomplete, {geocodeByAddress,getLatLng,} from 'react-google-autocomplete';
+//import PlacesAutocomplete, {geocodeByAddress,getLatLng,} from 'react-google-autocomplete';
 
 const LocationInput = ({ onSelectLocation }) => {
   const handleSelect = async (address) => {
