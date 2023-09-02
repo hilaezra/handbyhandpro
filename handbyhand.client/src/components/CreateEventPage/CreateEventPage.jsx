@@ -52,6 +52,10 @@ const CreateEventPage = () => {
     setEndTime(event.target.value);
   };
 
+  const handleLocationChange = (newLocation) => {
+    setUserLocation(newLocation);
+  };
+
   const handleCheckboxChange = () => {
     setAuthorIsParticipant(!AuthorIsParticipant);
   };
@@ -121,7 +125,7 @@ const CreateEventPage = () => {
           <div className="event-title form-group">
             <label className="textfield-lab" htmlFor="event-location">Location: </label>
             {/* <input className="text-field" value={eventLocation} onChange={handleEventLocationChange} /> */}
-            <LocationInput className="text-field" value={location} onSelectLocation={handleSelectLocation} />
+            <LocationInput className="text-field" onLocationChange={handleLocationChange}/>
           </div>
 
           <div className="start-date form-group">
