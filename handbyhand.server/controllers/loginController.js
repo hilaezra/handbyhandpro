@@ -9,10 +9,13 @@ module.exports = {
 
     try {
       // Get user input
+      console.log(req.body);//
       const { username, password } = req.body;
+      const lowercaseUsername = username.toLowerCase();
 
       // Validate if user exist in our database
-      const user = await Users.findOne({toLowerCase(){username}, password});
+      const user = await Users.findOne({username: lowercaseUsername, password});
+      console.log(user);
 
         if (user) {
           console.log("user",user.firstname, "login :)");
@@ -20,7 +23,7 @@ module.exports = {
           // Generate JWT token
           const token = jwt.sign({ userId: user._id, email: user.email }, secretKey, { expiresIn: '1h' });
           console.log(token);
-          res.json({ token });
+          return res.json({ token });
           /////
           //return res.status(200).json(user);
         }else {

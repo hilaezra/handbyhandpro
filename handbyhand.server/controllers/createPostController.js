@@ -5,7 +5,9 @@ module.exports = {
 
     getAllPosts: async (req, res) => {
         try { 
-            const posts = await Posts.find({}); 
+            const posts = await Posts.find({}).populate({
+                path: 'participants',
+                select: ['_id', 'firstname', 'lastname']}) // Select fields you want to populate; 
             return res.status(200).json(posts); 
         } 
         catch (err) { 
@@ -15,7 +17,9 @@ module.exports = {
 
     getSocialPosts: async (req, res) => {
         try { 
-            const posts = await Posts.find({eventType: "Social"}); 
+            const posts = await Posts.find({eventType: "Social"}).populate({
+                path: 'participants',
+                select: ['_id', 'firstname', 'lastname']}); 
             return res.status(200).json(posts); 
         } 
         catch (err) { 
@@ -25,7 +29,9 @@ module.exports = {
 
     getVolunteerPosts: async (req, res)=>{
         try { 
-             const posts = await Posts.find({eventType: "Volunteer"}); 
+             const posts = await Posts.find({eventType: "Volunteer"}).populate({
+                path: 'participants',
+                select: ['_id', 'firstname', 'lastname']}); 
              return res.status(200).json(posts); 
          } 
          catch (err) { 
@@ -35,7 +41,9 @@ module.exports = {
 
     getContributionPosts: async (req, res)=>{
         try { 
-             const posts = await Posts.find({eventType: "Contribution"}); 
+             const posts = await Posts.find({eventType: "Contribution"}).populate({
+                path: 'participants',
+                select: ['_id', 'firstname', 'lastname']}); 
              return res.status(200).json(posts); 
          } 
          catch (err) { 
