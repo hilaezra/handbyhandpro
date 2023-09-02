@@ -124,6 +124,8 @@ function Post({ post }) {
         <div className="popup">
           <div className="popup-content">
         <p className="card-text">Event details: {post.content}</p>
+        <p className="card-text">Area: {post.arealocation}</p>
+        <p className="card-text">Location: {post.location}</p>
         <p className="card-text">Starts at: {post.startTime}</p>
         <p className="card-text">Ends at: {post.endTime}</p>
 

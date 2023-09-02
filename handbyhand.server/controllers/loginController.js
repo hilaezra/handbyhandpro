@@ -21,7 +21,7 @@ module.exports = {
           console.log("user",user.firstname, "login :)");
           /////
           // Generate JWT token
-          const token = jwt.sign({ userId: user._id, email: user.email }, secretKey, { expiresIn: '1h' });
+          const token = jwt.sign({ userId: user._id, email: user.email, firstname: user.firstname, lastname: user.lastname }, secretKey, { expiresIn: '1h' });
           console.log(token);
           return res.json({ token });
           /////
