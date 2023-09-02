@@ -1,11 +1,58 @@
-import React, { useState} from 'react';
+import React, { useEffect, useState } from 'react'
 import './Post.css';
+import axios from 'axios'
+import jwtDecode from 'jwt-decode';
 //import Popup from './PopUp';
+
+axios.defaults.withCredentials = true
 
 function Post({ post }) {
 
   const [showPopup, setShowPopup] = useState(false);
-  const [activeTab, setActiveTab] = useState(false);
+  const [participants, setParticipants] = useState([]);
+  const [showParticipants, setShowParticipants] = useState(false);
+  const [message, setMessage] = useState('');
+  const [isParticipant, setIsParticipant] = useState(false);
+  const jwtToken = localStorage.getItem('token'); 
+
+  useEffect(() => {
+    const jwtToken = localStorage.getItem('token'); 
+    if (jwtToken) {
+      const decodedToken = jwtDecode(jwtToken);
+      const userId = decodedToken.userId;
+      if(post.participants != null)
+      {
+        console.log(post.participants.includes(userId));
+        setIsParticipant(post.participants.includes(userId));
+      }
+    }
+  }, [post]); 
+
+  useEffect(() => {
+    if (showParticipants) {
+      fetchParticipants();
+    }
+  }, [showParticipants]);
+
+  const fetchParticipants = async () => {
+    try {
+      console.log('start fetching')
+
+      const response = await axios.post('http://localhost:3000/post/participants', {
+        postId: post._id,
+      }, {headers: { Authorization: `Bearer ${jwtToken}`, }}, { withCredentials: true },);
+
+      console.log('response.data:');
+      console.log(response.data);
+      console.log('response.data ends!!!');
+
+      setParticipants(old => response.data.participants);
+      console.log(participants);
+
+    } catch (error) {
+      console.error('Error fetching participants:', error);
+    }
+  };
 
   const handleOpenPopup = () => {
     setShowPopup(true);
@@ -15,12 +62,39 @@ function Post({ post }) {
     setShowPopup(false);
   };
 
-  const handleTabChange = (tab) => {
-    setActiveTab(tab);
+  const handleCloseParticipants = () => {
+    setShowParticipants(false);
   };
 
-  const handleCloseParticipants = () => {
-    setActiveTab(false);
+  const handleParticipate = async () => {
+    try {
+      const response = await axios.post('http://localhost:3000/post/participate', {
+        postId: post._id,
+      }, {headers: { Authorization: `Bearer ${jwtToken}`, }}, { withCredentials: true },);
+
+      console.log(response.data.message);
+      setIsParticipant(true);
+      alert(response.data.message);
+      setMessage(response.data.message);
+    } catch (error) {
+      console.error('Error participating in event: ', error.message);
+      console.log(JSON.stringify(error))
+    }
+  };
+
+  const handleCancelParticipation = async () => {
+    try {
+      const response = await axios.post('http://localhost:3000/post/cancelParticipation', {
+        postId: post._id,
+      }, {headers: { Authorization: `Bearer ${jwtToken}`, }}, { withCredentials: true },);
+
+      console.log(response.data.message);
+      setIsParticipant(false);
+      alert(response.data.message);
+      setMessage(response.data.message);
+    } catch (error) {
+      console.error('Error canceling participation:', error);
+    }
   };
 
   const startDate = new Date(post.startDate).toLocaleDateString('en-US', {
@@ -53,40 +127,40 @@ function Post({ post }) {
         <p className="card-text">Starts at: {post.startTime}</p>
         <p className="card-text">Ends at: {post.endTime}</p>
 
-        <div>
-            <div className="tab-buttons">
-              <button className={activeTab === 'participants' ? 'active' : ''}
-                onClick={() => handleTabChange('participants')}> Participants </button>
-              <button className={activeTab === 'reviews' ? 'active' : ''}
-                onClick={() => handleTabChange('reviews')}>Reviews </button>
-        </div>
-      
+        <div>      
           {/* Handling on participants and reviews buttons */}
-          {activeTab === 'participants' && (
-            <div className="participants">
-              <div className="participants-content">
-                  {/* participants names */
-                  post.participants === null ? (
+
+          <button onClick={() => setShowParticipants(true)}>View Participants</button>
+
+              {showParticipants && ( 
+                <div className="participants">
+                  <div className="participants-content">
+
+                {/* participants names */
+                  (participants === null || !Array.isArray(participants)) ? (
                     <p>No participants for this event.</p>
                   ) : (
                     <ul>Event Participants: 
-                      {post.participants.map(participant => (
+                      {participants.map(participant => (
                         <li key={participant._id}>{participant.firstname} {participant.lastname}</li>))}
                     </ul>)}
-                <button onClick={handleCloseParticipants}>Close</button>
-              </div>
+                   <button onClick={handleCloseParticipants}>Close</button>
+
+                </div>
             </div>
-          )}
-      
-          {activeTab === 'reviews' && (
-            <div className="reviews-content">
-              {/* reviews content */
-                <p className="card-text">{post.reviews}</p>}
-            </div>
-          )}
+              )}
       </div>
 
-        
+      <div>
+          {isParticipant ? (
+            <button onClick={handleCancelParticipation}>Cancel Participation</button>
+              ) : (
+            <button onClick={handleParticipate}>Join the event</button>
+          )}
+          {/*message && <p>{message}</p>*/}
+      </div>
+      
+     
             <button className="close-button" onClick={handleClosePopup}>
               Close
             </button>
