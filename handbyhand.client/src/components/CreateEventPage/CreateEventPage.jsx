@@ -10,6 +10,7 @@ const CreateEventPage = () => {
   const [eventType, setEventType] = useState('Social'); //set the first option as defult
   const [eventTitle, setEventTitle] = useState('');
   const [content, setContent] = useState('');
+  const [arealocation, setArealocation] = useState('Center'); //set the first option as defult
   const [location, setLocation] = useState('');
   const [startDate, setStartDate] = useState('');
   const [startTime, setStartTime] = useState('');
@@ -52,8 +53,12 @@ const CreateEventPage = () => {
     setEndTime(event.target.value);
   };
 
+  const handleAreaChange = (event) => {
+    setArealocation(event.target.value);
+  }
+
   const handleLocationChange = (newLocation) => {
-    setUserLocation(newLocation);
+    setLocation(newLocation);
   };
 
   const handleCheckboxChange = () => {
@@ -72,6 +77,7 @@ const CreateEventPage = () => {
            eventTitle: eventTitle,
            content: content,
            location: location,
+           arealocation: arealocation,
            startDate: startDate,
            startTime: startTime,
            endDate: endDate, 
@@ -99,8 +105,8 @@ const CreateEventPage = () => {
         <form>
           <div className="author form-group">
             <label className="textfield-lab" htmlFor="author">Author: </label>
+            {/* ////////TODO GET THE USER NAME FROM SERVER//////////// */}
             <label className="login-lab" htmlFor="author">Yuval Ohana</label>
-            {/* <label className="login-lab" htmlFor="author">{getConectedUser}</label> */}
           </div>
 
           <div className="event-type form-group">
@@ -123,8 +129,13 @@ const CreateEventPage = () => {
           </div>
 
           <div className="event-title form-group">
-            <label className="textfield-lab" htmlFor="event-location">Location: </label>
-            {/* <input className="text-field" value={eventLocation} onChange={handleEventLocationChange} /> */}
+            <label className="textfield-lab" htmlFor="event-location">Location Area: </label>
+            <select className="text-field" value={arealocation} onChange={handleAreaChange}>
+              <option value="Center">Center</option>
+              <option value="North">North</option>
+              <option value="South">South</option>
+            </select>
+            <label className="textfield-lab" htmlFor="event-location">Location Adress: </label>
             <LocationInput className="text-field" onLocationChange={handleLocationChange}/>
           </div>
 
@@ -140,7 +151,7 @@ const CreateEventPage = () => {
             <input className="text-field" type="time" id="time" value={endTime} onChange={handleEndTimeChange}/>
           </div>
 
-          <div className="participants form-group">
+          <div className="form-group">
             <label className="textfield-lab" htmlFor="password">I am participant in the event:</label>
             <input className="text-field" type="checkbox" checked={AuthorIsParticipant} onChange={handleCheckboxChange} />
           </div>
