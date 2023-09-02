@@ -58,7 +58,7 @@ module.exports = {
         const post = req.body;
 
         //Validate event input
-        if(!(post.eventType && post.eventTitle && post.content && post.startDate && post.endDate))
+        if(!(post.eventType && post.eventTitle && post.content && post.startDate && post.endDate && post.location))
         {
             console.log('Missing event details'); //check details!
             return res.status(400).json({'message' : 'Missing event details'});

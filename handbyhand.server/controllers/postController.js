@@ -59,44 +59,26 @@ module.exports = {
             if (!post) {
                 return res.status(404).json({ message: 'Event not found' });
             } else if (!post.participants) { // Check if participants array is null or doesn't exist 
-                // If participants array is null or doesn't exist, create a new array with the first participant
-                post.participants = [userId];
+                console.log('The participants is null!!!')
+                post.set({ participants: [userId] }); // create new array with the first participant
+                console.log('new user added!!')
+                console.log(post.participants)
+
             }
              else if (!post.participants.includes(userId)){//check if userId is not already in the array    
-                // Add userId to the participants array
                 console.log("adding new user");
-                post.participants.push(userId);
+                post.participants.push(userId); // Add userId to the participants array
                 console.log('participants: ', post.participants);
-            } else {
-            // Handle the case where the user is already a participant
-            return res.status(200).json({ message: 'user is already participate the event' });
+            } else {//if user is already a participant                
+                return res.status(200).json({ message: 'user is already participate the event' });
             }
 
-            try {
-                const updatedPost = await post.save();
-                console.log('Post updated:', updatedPost);
-              } catch (error) {
-                console.error('Error updating post:', error);
-              }
-
-        console.log('updatedPost', updatedPost)
-
-        // Save the updated post
-            /*const post1= await Posts.findById(postId); 
-            console.log('post1:' , post1);
-            post1.participants = post1.participants || [];
-            console.log('participants arr:',post1.participants )
-            post1.participants.addToSet(userId);*/
-            /*const post = await Posts.findByIdAndUpdate(postId,
-            { $addToSet: { participants: userId } },
-            { new: true });
-            console.log(post);*/
-
-            //if (!post) {
-           // return res.status(404).json({ message: 'Event not found' });
-           // }
+            console.log('saving update post')    
+            const updatedPost = await post.save();
+            console.log('Post updated:', updatedPost);
             res.json({ message: 'You participate in the event', post });
         } catch (error) {
+            console.error('Error updating post:', error);
             res.status(500).json({ message: 'Error participating in the event' });
         }
     }, 

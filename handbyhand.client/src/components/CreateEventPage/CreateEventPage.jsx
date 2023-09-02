@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import jwtDecode from 'jwt-decode';
 import {useNavigate} from 'react-router-dom';
 import './CreateEventPage.css'
 import LocationInput from '../General/LocationInput';
@@ -66,6 +67,10 @@ const CreateEventPage = () => {
   };
 
   const jwtToken = localStorage.getItem('token');
+  const decodedToken = jwtDecode(jwtToken);
+  const firstname = decodedToken.firstname;
+  const lastname = decodedToken.lastname;
+
   const navigate = useNavigate();
   const handleCreateEventClicked = async (e) => {
     try {
@@ -105,8 +110,7 @@ const CreateEventPage = () => {
         <form>
           <div className="author form-group">
             <label className="textfield-lab" htmlFor="author">Author: </label>
-            {/* ////////TODO GET THE USER NAME FROM SERVER//////////// */}
-            <label className="login-lab" htmlFor="author">Yuval Ohana</label>
+            <label className="login-lab" htmlFor="author">{firstname } {lastname}</label>
           </div>
 
           <div className="event-type form-group">
