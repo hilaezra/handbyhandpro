@@ -4,6 +4,7 @@ const secretKey = process.env.secretKey;
 exports.authenticateToken = (req, res, next) => {
 
   const token = req.header('Authorization').replace('Bearer ', '');
+  console.log('user token in auth');
   console.log(token); /////
 
   if (!token) {
