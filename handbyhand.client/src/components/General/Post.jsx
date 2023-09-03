@@ -9,11 +9,17 @@ axios.defaults.withCredentials = true
 function Post({ post }) {
 
   const [showPopup, setShowPopup] = useState(false);
+  const [message, setMessage] = useState('');
+  const jwtToken = localStorage.getItem('token'); 
+  //participants: 
   const [participants, setParticipants] = useState([]);
   const [showParticipants, setShowParticipants] = useState(false);
-  const [message, setMessage] = useState('');
   const [isParticipant, setIsParticipant] = useState(false);
-  const jwtToken = localStorage.getItem('token'); 
+  //reviews:
+  const [reviews, setReviews] = useState([]);
+  const [showReviews, setShowReviews] = useState(false);
+  const [newComment, setNewComment] = useState('');
+  
 
   useEffect(() => {
     const jwtToken = localStorage.getItem('token'); 
@@ -36,7 +42,7 @@ function Post({ post }) {
 
   const fetchParticipants = async () => {
     try {
-      console.log('start fetching')
+      console.log('start fetching participant')
 
       const response = await axios.post('http://localhost:3000/post/participants', {
         postId: post._id,
@@ -54,6 +60,36 @@ function Post({ post }) {
     }
   };
 
+  useEffect(() => {
+    if (showReviews) {
+      fetchReviews();
+    }
+  }, [showReviews]);
+
+  const fetchReviews = async () => {
+    try {
+      console.log('start fetching reviews')
+
+      const response = await axios.post('http://localhost:3000/post/reviews', {
+        postId: post._id,
+      }, {headers: { Authorization: `Bearer ${jwtToken}`, }}, { withCredentials: true },);
+
+      console.log('response.data:');
+      console.log(response.data);
+      console.log('response.data ends!!!');
+
+      setReviews(old => response.data.participants);
+      console.log(reviews);
+
+    } catch (error) {
+      console.error('Error fetching reviews:', error);
+    }
+  };
+
+  const handleCommentChange = (e) => {
+    setNewComment(e.target.value);
+  };
+
   const handleOpenPopup = () => {
     setShowPopup(true);
   };
@@ -64,6 +100,10 @@ function Post({ post }) {
 
   const handleCloseParticipants = () => {
     setShowParticipants(false);
+  };
+
+  const handleCloseReviews = () => {
+    setShowReviews(false);
   };
 
   const handleParticipate = async () => {
@@ -133,6 +173,8 @@ function Post({ post }) {
           {/* Handling on participants and reviews buttons */}
 
           <button onClick={() => setShowParticipants(true)}>View Participants</button>
+          <button onClick={() => setShowReviews(true)}>Reviews</button>
+
 
               {showParticipants && ( 
                 <div className="participants">
@@ -148,8 +190,34 @@ function Post({ post }) {
                     </ul>)}
                    <button onClick={handleCloseParticipants}>Close</button>
 
+                  </div>
                 </div>
-            </div>
+              )}
+
+              {showReviews && (
+                <div className="reviews">
+                  <div className="reviews-content">
+                    { 
+                      (reviews === null || !Array.isArray(reviews)) ? (
+                        <p>No reviews for this event.</p>
+                      ) : (
+                        <div>
+                          <h3>Reviews</h3>
+                          <ul>
+                            {reviews.map((review, index) => (
+                              <li key={index}>
+                              <strong>User:</strong> {review.user}
+                              <br />
+                              <strong>Comment:</strong> {review.text}
+                              </li> ))}
+                          </ul>
+                        </div>                      
+                      )}
+                   <button onClick={handleCloseReviews}>Close</button>
+
+                  </div>
+                </div>
+
               )}
       </div>
 
