@@ -132,7 +132,7 @@ const CreateEventPage = () => {
             <textarea className="text-field content" value={content} onChange={handleContentChange} />
           </div>
 
-          <div className="event-title form-group">
+          <div className="event-area form-group">
             <label className="textfield-lab" htmlFor="event-location">Location Area: </label>
             <select className="text-field" value={arealocation} onChange={handleAreaChange}>
               <option value="Center">Center</option>
