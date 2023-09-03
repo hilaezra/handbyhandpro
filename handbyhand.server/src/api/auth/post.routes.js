@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const createPostController = require("../../../controllers/createPostController");
 const postController = require("../../../controllers/postController");
+const postReviewsController = require("../../../controllers/postReviewsController");
+
 const {authenticateToken } = require("../../../middleware/auth.middleware");
 
 router.route('/getAllPosts').get(createPostController.getAllPosts);
@@ -19,5 +21,7 @@ router.route('/participants').post(authenticateToken, postController.getParticip
 router.route('/participate').post(authenticateToken, postController.addParticipant);
 
 router.route('/cancelParticipation').post(authenticateToken, postController.removeParticipant);
+
+router.route('/reviews').post(authenticateToken, postReviewsController.getPostReviews);
 
 module.exports = router;
