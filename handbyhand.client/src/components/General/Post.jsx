@@ -98,7 +98,7 @@ function Post({ post }) {
     setShowPopup(false);
   };
 
-  const handleCloseParticipants = () => {
+ const handleCloseParticipants = () => {
     setShowParticipants(false);
   };
 
@@ -169,6 +169,8 @@ function Post({ post }) {
         <p className="card-text">Starts at: {post.startTime}</p>
         <p className="card-text">Ends at: {post.endTime}</p>
 
+
+
         <div>      
           {/* Handling on participants and reviews buttons */}
 
@@ -221,6 +223,8 @@ function Post({ post }) {
               )}
       </div>
 
+      
+
       <div>
           {isParticipant ? (
             <button onClick={handleCancelParticipation}>Cancel Participation</button>
@@ -231,11 +235,10 @@ function Post({ post }) {
       </div>
       
      
-            <button className="close-button" onClick={handleClosePopup}>
-              Close
-            </button>
+            <button className="close-button" onClick={handleClosePopup}>Close</button>
           </div>
         </div>
+
       )}
 
         {/* <Popup show={showPopup} onClose={handleClosePopup} children={post}>

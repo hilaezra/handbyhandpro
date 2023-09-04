@@ -1,6 +1,8 @@
 import React from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
+import { LoginSocialFacebook } from 'reactjs-social-login';
+import { FacebookLoginButton } from 'react-social-login-buttons';
 import './LoginPage.css';
 
 axios.defaults.withCredentials = true
@@ -22,31 +24,27 @@ const LoginPage = () => {
     const handleLoginClicked = async (e) => {
         e.preventDefault()
         console.log('handleLoginClicked');
-        
-        try {            
-            if (username && password) 
-            {
+
+        try {
+            if (username && password) {
                 const response = await axios.post("http://localhost:3000/auth/login", {
                     username: username,
                     password: password
                 })
-    
-                if (response.status === 200)
-                {
+
+                if (response.status === 200) {
                     console.log(response.data); /////
                     const data = response.data; /////
                     localStorage.setItem('token', data.token); /////
-                    
+
                     navigate("/home");
                 }
-                else
-                {
+                else {
                     console.log(response.error);
                     alert("please provide user name and password")
                 }
-            } 
-            else 
-            {
+            }
+            else {
                 alert("please provide user name and password")
             }
 
@@ -92,8 +90,22 @@ const LoginPage = () => {
 
                 <span />
 
-                <div>
+                {/* login with facebook */}
+
+                {/* <div>
                     <button className="login-btn " type="submit" onClick={handleConnectWithFacebookClicked}>Connect with Facebook</button>
+                </div> */}
+
+                <div className="facebook-login-btn">
+                    <LoginSocialFacebook appId="315112121059260" onResolve={(response) => {
+                        console.log(response);
+                    }}
+                        onReject={(error) => {
+                            console.log(error);
+                        }}
+                    >
+                        <FacebookLoginButton />
+                    </LoginSocialFacebook>
                 </div>
             </div>
         </div>
