@@ -4,8 +4,8 @@ const secretKey = process.env.secretKey;
 exports.authenticateToken = (req, res, next) => {
 
   const token = req.header('Authorization').replace('Bearer ', '');
-  console.log('user token in auth');
-  console.log(token); /////
+  //console.log('user token in auth');
+  //console.log(token); /////
 
   if (!token) {
     return res.sendStatus(401);
@@ -17,7 +17,7 @@ exports.authenticateToken = (req, res, next) => {
       return res.sendStatus(403);
     }
     req.user = user;
-    console.log('auth ends now')
+    //console.log('auth ends now')
     next();
   });
 }
