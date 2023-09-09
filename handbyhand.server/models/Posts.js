@@ -16,7 +16,10 @@ const postSchema = new Schema ({
     endTime: {type:String,required: true},
     participants: [{type: Schema.Types.ObjectId, ref: 'Users', required: false}],
     reviews: [{
-          user: {type: Schema.Types.ObjectId, ref: 'User', required: false},
+          //user: {type: Schema.Types.ObjectId, ref: 'User', required: false},
+          dateAndTime: {type: String, required: true},
+          userFirstName: {type: String, required: true},
+          userLastName: {type: String, required: true},
           text: {type: String, required: false}}]
 })
 

@@ -24,4 +24,6 @@ router.route('/cancelParticipation').post(authenticateToken, postController.remo
 
 router.route('/reviews').post(authenticateToken, postReviewsController.getPostReviews);
 
+router.route('/addComment').post(authenticateToken, postReviewsController.addNewComment);
+
 module.exports = router;

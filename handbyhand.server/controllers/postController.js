@@ -63,9 +63,7 @@ module.exports = {
                 post.set({ participants: [userId] }); // create new array with the first participant
                 console.log('new user added!!')
                 console.log(post.participants)
-
-            }
-             else if (!post.participants.includes(userId)){//check if userId is not already in the array    
+            } else if (!post.participants.includes(userId)){//check if userId is not already in the array    
                 console.log("adding new user");
                 post.participants.push(userId); // Add userId to the participants array
                 console.log('participants: ', post.participants);

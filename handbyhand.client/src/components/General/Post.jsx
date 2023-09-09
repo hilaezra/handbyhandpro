@@ -70,15 +70,15 @@ function Post({ post }) {
     try {
       console.log('start fetching reviews')
 
-      const response = await axios.post('http://localhost:3000/post/reviews', {
-        postId: post._id,
-      }, {headers: { Authorization: `Bearer ${jwtToken}`, }}, { withCredentials: true },);
+      const response = await axios.post('http://localhost:3000/post/reviews', { postId: post._id,}, 
+      {headers: { Authorization: `Bearer ${jwtToken}`, }}, { withCredentials: true },);
 
-      console.log('response.data:');
+      console.log('response.data (of fetching reviews):');
       console.log(response.data);
       console.log('response.data ends!!!');
 
-      setReviews(old => response.data.participants);
+      setReviews(old => response.data.reviews);
+      console.log('reviews after setting:')
       console.log(reviews);
 
     } catch (error) {
@@ -137,6 +137,54 @@ function Post({ post }) {
     }
   };
 
+  const handleAddComment = async () => {
+
+    try {
+
+      const jwtToken = localStorage.getItem('token'); 
+      const decodedToken = jwtDecode(jwtToken);
+
+      const currentDate = new Date();
+      const year = currentDate.getFullYear();
+      const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Month is zero-based
+      const day = String(currentDate.getDate()).padStart(2, '0');
+      const hours = String(currentDate.getHours()).padStart(2, '0');
+      const minutes = String(currentDate.getMinutes()).padStart(2, '0');
+      const formattedDateTime = `${day}-${month}-${year} ${hours}:${minutes}`;
+
+      console.log('date and time:', formattedDateTime); // Display the formatted date and time
+
+      // Create a new comment object with the user and text
+      const newReview = {
+      dateAndTime:formattedDateTime,
+      userFirstName: decodedToken.firstname,
+      userLastName: decodedToken.lastname,
+      text: newComment, };
+
+     // const updatedReviews = [...post.reviews, newReview];    // Add the new comment to the reviews array
+
+      const response = await axios.post('http://localhost:3000/post/addComment', {
+        postId: post._id, newReview: newReview
+      }, {headers: { Authorization: `Bearer ${jwtToken}`, }}, { withCredentials: true },);
+
+      console.log(response.data.message);
+
+      setReviews(old => response.data.reviews);
+      console.log('new reviews: ')
+      console.log(reviews);
+      
+    } catch (error) {
+      console.error('Error participating in event: ', error.message);
+      console.log(JSON.stringify(error))
+    }
+
+    
+
+  //  post.reviews = updatedReviews;
+
+    setNewComment(''); // Clear the input field
+  }
+
   const startDate = new Date(post.startDate).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
@@ -169,14 +217,11 @@ function Post({ post }) {
         <p className="card-text">Starts at: {post.startTime}</p>
         <p className="card-text">Ends at: {post.endTime}</p>
 
-
-
         <div>      
           {/* Handling on participants and reviews buttons */}
 
           <button className="post-btn" onClick={() => setShowParticipants(true)}>View Participants</button>
           <button className="post-btn" onClick={() => setShowReviews(true)}>Reviews</button>
-
 
               {showParticipants && ( 
                 <div className="participants">
@@ -200,19 +245,45 @@ function Post({ post }) {
                 <div className="reviews">
                   <div className="reviews-content">
                     { 
-                      (reviews === null || !Array.isArray(reviews)) ? (
+                      (reviews === null ||reviews.length ===0 ||!Array.isArray(reviews)) ? (
+                        <div className="comment-input">
                         <p>No reviews for this event.</p>
+                            <input
+                            type="text"
+                            placeholder="Write a comment..."
+                            value={newComment}
+                            onChange={handleCommentChange}
+                            />
+                            <button onClick={handleAddComment}>Add Comment</button>
+                          </div>
                       ) : (
                         <div>
                           <h3>Reviews</h3>
                           <ul>
-                            {reviews.map((review, index) => (
-                              <li key={index}>
-                              <strong>User:</strong> {review.user}
-                              <br />
-                              <strong>Comment:</strong> {review.text}
+                            {reviews.map((review, index) => (     
+                              <li className="comment" key={index}>
+                               {review && (
+                                <>
+                                <strong>User:</strong> {review.userFirstName} {review.userLastName}
+                                <div className="comment-timestamp">{review.dateAndTime}</div>
+                                <br />
+                                <strong>Comment:</strong> {review.text}
+                                </>
+                               )}  
+                              
                               </li> ))}
                           </ul>
+
+                          <div className="comment-input">
+                            <input
+                            type="text"
+                            placeholder="Write a comment..."
+                            value={newComment}
+                            onChange={handleCommentChange}
+                            />
+                            <button onClick={handleAddComment}>Add Comment</button>
+                          </div>
+
                         </div>                      
                       )}
                    <button className="post-btn" onClick={handleCloseReviews}>Close</button>
