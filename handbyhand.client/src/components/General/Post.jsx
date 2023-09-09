@@ -229,7 +229,7 @@ function Post({ post }) {
         <p className="card-text">Starts: {startDate}</p>
         <p className="card-text">Ends: {endDate}</p>
         
-        <button onClick={handleOpenPopup}>show more details</button>
+        <button className="post-btn" onClick={handleOpenPopup}>show more details</button>
 
         {showPopup && (
         <div className="popup">
@@ -242,8 +242,8 @@ function Post({ post }) {
         <div>      
           {/* Handling on participants and reviews buttons */}
 
-          <button onClick={() => setShowParticipants(true)}>View Participants</button>
-          <button onClick={() => setShowReviews(true)}>Reviews</button>
+          <button className="post-btn" onClick={() => setShowParticipants(true)}>View Participants</button>
+          <button className="post-btn" onClick={() => setShowReviews(true)}>Reviews</button>
 
               {showParticipants && ( 
                 <div className="participants">
@@ -257,7 +257,7 @@ function Post({ post }) {
                       {participants.map(participant => (
                         <li key={participant._id}>{participant.firstname} {participant.lastname}</li>))}
                     </ul>)}
-                   <button onClick={handleCloseParticipants}>Close</button>
+                   <button className="popup-btn" onClick={handleCloseParticipants}>Close</button>
 
                   </div>
                 </div>
@@ -276,7 +276,7 @@ function Post({ post }) {
                             value={newComment}
                             onChange={handleCommentChange}
                             />
-                            <button onClick={handleAddComment}>Add Comment</button>
+                            <button className="popup-btn" onClick={handleAddComment}>Add Comment</button>
                           </div>
                       ) : (
                         <div>
@@ -305,12 +305,12 @@ function Post({ post }) {
                             value={newComment}
                             onChange={handleCommentChange}
                             />
-                            <button onClick={handleAddComment}>Add Comment</button>
+                            <button className="popup-btn" onClick={handleAddComment}>Add Comment</button>
                           </div>
 
                         </div>                      
                       )}
-                   <button onClick={handleCloseReviews}>Close</button>
+                   <button className="popup-btn" onClick={handleCloseReviews}>Close</button>
 
                   </div>
                 </div>
@@ -322,15 +322,15 @@ function Post({ post }) {
 
       <div>
           {isParticipant ? (
-            <button onClick={handleCancelParticipation}>Cancel Participation</button>
+            <button className="post-btn" onClick={handleCancelParticipation}>Cancel Participation</button>
               ) : (
-            <button onClick={handleParticipate}>Join the event</button>
+            <button className="post-btn" onClick={handleParticipate}>Join the event</button>
           )}
           {/*message && <p>{message}</p>*/}
       </div>
       
      
-            <button className="close-button" onClick={handleClosePopup}>Close</button>
+            <button className="post-btn" onClick={handleClosePopup}>Close</button>
           </div>
         </div>
 

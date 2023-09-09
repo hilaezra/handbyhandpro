@@ -6,7 +6,7 @@
 }
 
 .createevent-form {
-    margin-top: 650px;
+    margin-top: 570px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -64,7 +64,7 @@
     border: none;
     border-radius: 4px;
     padding: 8px 16px;
-    font-size: 16px;
+    font-size: 18px;
     margin: 5px;
 }
 
@@ -78,3 +78,15 @@
     height: 200px; 
 }
 
+.author-lab {
+    color: black;
+    margin-left: 10px;
+    font-size: 20px;
+    font: bolder;
+  }
+
+  .author {
+    margin: 10px;
+  }
+
+  

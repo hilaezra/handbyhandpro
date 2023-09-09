@@ -1,11 +1,18 @@
 .wrapper {
-    display: flex;
+  width: 100%;
+  display: flex;
   justify-content: space-between;
 }
 
-.home-page-tabs {
-    width: 50%;
+.modaa {
+  /* border: 1px solid blue; */
+  width: 100%;
+  margin: 8px;
+}
 
+.home-page-tabs {
+    width: 100%;
+    /* border: 1px solid red; */
 }
 
 .notification {
