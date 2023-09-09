@@ -108,9 +108,9 @@ const CreateEventPage = () => {
         <h1 id="create-event-title">Create Event</h1>
         
         <form>
-          <div className="author form-group">
+          <div className="author">
             <label className="textfield-lab" htmlFor="author">Author: </label>
-            <label className="login-lab" htmlFor="author">{firstname } {lastname}</label>
+            <label className="author-lab" htmlFor="author">{firstname } {lastname}</label>
           </div>
 
           <div className="event-type form-group">
@@ -155,9 +155,9 @@ const CreateEventPage = () => {
             <input className="text-field" type="time" id="time" value={endTime} onChange={handleEndTimeChange}/>
           </div>
 
-          <div className="form-group">
-            <label className="textfield-lab" htmlFor="password">I am participant in the event:</label>
-            <input className="text-field" type="checkbox" checked={AuthorIsParticipant} onChange={handleCheckboxChange} />
+          <div >
+            <input className="participant-check text-field" type="checkbox" checked={AuthorIsParticipant} onChange={handleCheckboxChange} />
+            <label className="textfield-lab" htmlFor="password">I am participant in the event</label>
           </div>
 
           <button className="btn create-event-btn " onClick={handleCreateEventClicked}>Create Event</button>
