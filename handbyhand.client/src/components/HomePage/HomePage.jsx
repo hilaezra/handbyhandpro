@@ -14,14 +14,14 @@ const HomePage = () => {
     //   <p> invite friends to become one of our family members</p>
     // </div> */}
     <div className='wrapper'>
-      <div className="modaa">
-        <img src='../../AppImages/shelterNote.png' />
+      <div className="modaa shelternote">
+        <img src='../../AppImages/shelterNote.png' style={{ width: '214px', height: 'auto' }}/>
       </div>
       <div className="home-page-tabs">
         <HomePageTabs />
       </div>
-      <div className="modaa">
-        <img src='../../AppImages/yoganote.png' />
+      <div className="modaa yoganote">
+        <img src='../../AppImages/yoganote.png' style={{ width: '214px', height: 'auto' }}/>
       </div>
     </div>
 

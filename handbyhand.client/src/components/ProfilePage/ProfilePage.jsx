@@ -33,20 +33,30 @@ const ProfilePage = () => {
         <form>
           <div className="about form-group-profile">
             <h5 id="profile-page-title">About</h5>
+            <div>
             <label className="textfield-lab" htmlFor="firstname">First name: </label>
             <label className="user-details" htmlFor="author">{user.firstname}</label>
+            </div>
+            <div>
             <label className="textfield-lab" htmlFor="firstname">Last name: </label>
             <label className="user-details" htmlFor="author">{user.lastname}</label>
+            </div>
+            <div>
             <label className="textfield-lab" htmlFor="author">Birth Date: </label>
             <label className="user-details" htmlFor="author">{userBirthdate}</label>
+            </div>
+            <div>
             <label className="textfield-lab" htmlFor="author">Gender: </label>
             <label className="user-details" htmlFor="author">{user.gender}</label>
+          </div>
           </div>
 
           <div className="contact-info form-group-profile">
             <h5 id="profile-page-title">Contact info</h5>
+            <div>
             <label className="textfield-lab" htmlFor="author">Email: </label>
             <label className="user-details" htmlFor="author">{user.email}</label>
+            </div>
             {/* <label className="textfield-lab" htmlFor="author">Mobile: </label>
             <label className="user-details" htmlFor="author">{user.mobile}</label> */}
           </div>
@@ -55,13 +65,13 @@ const ProfilePage = () => {
             <h5 id="profile-page-title">Skills</h5>
           </div>
 
-          <div className="future-events form-group-profile">
+          {/* <div className="future-events form-group-profile">
             <h5 id="profile-page-title">Events I'm going to attend</h5>
           </div>
 
           <div className="past-events form-group-profile">
             <h5 id="profile-page-title">Events I attended</h5>
-          </div>
+          </div> */}
 
         </form>
       </div>

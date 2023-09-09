@@ -1,10 +1,10 @@
 .events {
-    margin-top: 20px;
+    margin-top: 5px;
     background-color: #b4d1be;
     width: 800px;
     min-width: 800px;
     min-height: 450px;
-    max-height: 490px;
+    max-height: 460px;
     border:2px solid #94b49fd4;
     overflow-y: scroll;
 

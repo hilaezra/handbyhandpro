@@ -67,7 +67,7 @@ const AdvancedSearchPage = () => {
 
 
   return (
-    <div className="createevent-container">
+    <div className="AdvancedSearch-container">
 
       <div className="AdvancedSearch-form">
         <h1 className="advanced-search-title">Advanced Search</h1>
@@ -108,7 +108,7 @@ const AdvancedSearchPage = () => {
 
 
         <div>
-          <button className="sort-btn " onClick={handleSort}>To sort click here</button>
+          <button className="sort-btn " onClick={handleSort}>Search</button>
 
           {showPosts && (
                 <div className="posts">
