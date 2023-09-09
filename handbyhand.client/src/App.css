@@ -1,12 +1,10 @@
 .App {
     text-align: center;
     background-attachment: fixed;
+    margin-top: 90px;
   }
   
   body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     height: 100vh;
     background-color: #FCF8E8;
     font-family: 'Luckiest Guy', cursive;

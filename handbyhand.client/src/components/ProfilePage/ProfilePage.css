@@ -1,4 +1,4 @@
-.profilepage-container {
+/* .profilepage-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -6,7 +6,7 @@
 }
 
 .profilepage-form {
-    margin-top: 440px;
+    margin-top: 450px;
     display: flex;
     flex-direction: column;
     width: 600px;
@@ -23,11 +23,11 @@
     text-align: center;
     margin-bottom: 20px;
     top: 100px;
-    /* set to the height of your navbar */
+    /* set to the height of your navbar /
     left: 0;
     width: 100%;
     height: 60px;
-    /* adjust as needed */
+    /* adjust as needed /
     justify-content: center;
     align-items: center;
 }
@@ -39,8 +39,9 @@
     margin-top: 20px;
     margin-bottom: 10px;
     padding: 20px;
-    border: 1px solid #ccc;
+    border: 2px solid #94B49F;
     border-radius: 5px;
+    background-color: #c5d8cc;
 }
 
 .form-group-profile h5{
@@ -49,4 +50,55 @@ text-align: left;
 
 .form-group-profile label {
     margin-bottom: 5px;
-}
+} */
+
+/* profilepage.css */
+
+.profilepage-container {
+    background-color: #FCF8E8;
+    padding: 20px;
+  }
+  
+  .profilepage-form {
+    background-color: #89A68D;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  #profile-page-title {
+    color: white;
+    background-color: #94B49F;
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+  
+  .form-group-profile {
+    margin-bottom: 20px;
+  }
+  
+  .textfield-lab {
+    font-weight: bold;
+    color: black;
+    text-align: left;
+  }
+  
+  .user-details {
+    color: black;
+    margin-left: 10px;
+  }
+  
+  /* Add any additional styles or overrides here */
+  
+  /* Example: Style the submit button */
+  /* .submit-button {
+    background-color: white;
+    color: #DF7861;
+    border: 2px solid #DF7861;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  } */
+  
