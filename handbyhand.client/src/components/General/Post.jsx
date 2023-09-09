@@ -235,7 +235,7 @@ function Post({ post }) {
                       {participants.map(participant => (
                         <li key={participant._id}>{participant.firstname} {participant.lastname}</li>))}
                     </ul>)}
-                   <button className="post-btn" onClick={handleCloseParticipants}>Close</button>
+                   <button className="popup-btn" onClick={handleCloseParticipants}>Close</button>
 
                   </div>
                 </div>
@@ -254,7 +254,7 @@ function Post({ post }) {
                             value={newComment}
                             onChange={handleCommentChange}
                             />
-                            <button onClick={handleAddComment}>Add Comment</button>
+                            <button className="popup-btn" onClick={handleAddComment}>Add Comment</button>
                           </div>
                       ) : (
                         <div>
@@ -281,12 +281,12 @@ function Post({ post }) {
                             value={newComment}
                             onChange={handleCommentChange}
                             />
-                            <button onClick={handleAddComment}>Add Comment</button>
+                            <button className="popup-btn" onClick={handleAddComment}>Add Comment</button>
                           </div>
 
                         </div>                      
                       )}
-                   <button className="post-btn" onClick={handleCloseReviews}>Close</button>
+                   <button className="popup-btn" onClick={handleCloseReviews}>Close</button>
 
                   </div>
                 </div>
