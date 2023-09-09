@@ -33,8 +33,6 @@ module.exports = {
             const text = req.body.newReview.text;
             const dateAndTime = req.body.newReview.dateAndTime;
             
-            
-
             // find the post by its postId
             const post = await Posts.findById(postId);
 
@@ -48,7 +46,7 @@ module.exports = {
 
             // Add the new comment to the reviews array
             post.reviews.push({
-            dateAndTime:dateAndTime,    
+            dateAndTime:dateAndTime,
             userFirstName: userFirstName,
             userLastName: userLastName,
             text: text,});
@@ -63,5 +61,35 @@ module.exports = {
             console.error('Error fetching reviews:', error);
             res.status(500).json({ message: 'Error fetching participants' });
           }
+    },
+
+    deleteComment: async (req, res) => {
+        const postId = req.body.postId;
+        const reviewId = req.body.commentId;
+
+        try{
+            const post = await Posts.findById(postId);
+            if (!post){
+                return res.status(404).json({ message: 'Event not found' });  
+            } 
+
+            const comment = post.reviews.find((review) => review._id.toString() === reviewId);
+
+            console.log('comment')
+            console.log(comment)
+
+            if (!comment) {
+                return res.status(404).json({ message: 'Comment not found' });
+            }
+
+            post.reviews.pull({ _id: reviewId });
+            await post.save();
+
+            res.status(200).json({ message: 'Comment deleted successfully', reviews: post.reviews });
+
+        }catch (error) {
+            console.error('Error fetching reviews:', error);
+            res.status(500).json({ message: 'Error fetching participants' });
+        }
     },
 }

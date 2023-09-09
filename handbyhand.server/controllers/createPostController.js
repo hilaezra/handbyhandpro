@@ -1,5 +1,6 @@
 const Users = require('../models/Users');
 const Posts = require('../models/Posts');
+const moment = require('moment');
 
 module.exports = {
 
@@ -7,10 +8,18 @@ module.exports = {
         try { 
             const posts = await Posts.find({}).populate({
                 path: 'participants',
-                select: ['_id', 'firstname', 'lastname']}) // Select fields you want to populate; 
-            return res.status(200).json(posts); 
+                select: ['_id', 'firstname', 'lastname']}) 
+
+            const currentDateTime = moment();
+            const filteredPosts = posts.filter((post) => {
+                const postDateTime = moment(`${post.startDate}`);
+                return postDateTime.isSameOrAfter(currentDateTime);
+              });
+                
+            return res.status(200).json(filteredPosts); 
         } 
         catch (err) { 
+            console.error('Error:', err);
             res.status(500).json(err);
         }
     },
@@ -20,9 +29,18 @@ module.exports = {
             const posts = await Posts.find({eventType: "Social"}).populate({
                 path: 'participants',
                 select: ['_id', 'firstname', 'lastname']}); 
-            return res.status(200).json(posts); 
+
+
+            const currentDateTime = moment();
+            const filteredPosts = posts.filter((post) => {
+                const postDateTime = moment(`${post.startDate}`);
+                return postDateTime.isSameOrAfter(currentDateTime);
+            });
+                    
+            return res.status(200).json(filteredPosts); 
         } 
         catch (err) { 
+            console.error('Error:', err);
             res.status(500).json(err);
         }
     },
@@ -32,10 +50,17 @@ module.exports = {
              const posts = await Posts.find({eventType: "Volunteer"}).populate({
                 path: 'participants',
                 select: ['_id', 'firstname', 'lastname']}); 
-             return res.status(200).json(posts); 
+            const currentDateTime = moment();
+            const filteredPosts = posts.filter((post) => {
+                const postDateTime = moment(`${post.startDate}`);
+                return postDateTime.isSameOrAfter(currentDateTime);
+            });
+                        
+            return res.status(200).json(filteredPosts);
          } 
          catch (err) { 
-             res.status(500).json(err);
+            console.error('Error:', err);
+            res.status(500).json(err);
          }
     },
 
@@ -44,10 +69,17 @@ module.exports = {
              const posts = await Posts.find({eventType: "Contribution"}).populate({
                 path: 'participants',
                 select: ['_id', 'firstname', 'lastname']}); 
-             return res.status(200).json(posts); 
+            const currentDateTime = moment();
+            const filteredPosts = posts.filter((post) => {
+                const postDateTime = moment(`${post.startDate}`);
+                return postDateTime.isSameOrAfter(currentDateTime);
+            });
+                        
+            return res.status(200).json(filteredPosts);
          } 
          catch (err) { 
-             res.status(500).json(err);
+            console.error('Error:', err);
+            res.status(500).json(err);
          }
     },
 

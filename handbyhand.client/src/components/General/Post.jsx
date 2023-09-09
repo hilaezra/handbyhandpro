@@ -10,7 +10,13 @@ function Post({ post }) {
 
   const [showPopup, setShowPopup] = useState(false);
   const [message, setMessage] = useState('');
-  const jwtToken = localStorage.getItem('token'); 
+  const jwtToken = localStorage.getItem('token');
+  const decodedToken = jwtDecode(jwtToken);
+  const currentUser = {
+    firstname: decodedToken.firstname,
+    lastname: decodedToken.lastname,
+    email: decodedToken.email
+  }
   //participants: 
   const [participants, setParticipants] = useState([]);
   const [showParticipants, setShowParticipants] = useState(false);
@@ -19,8 +25,8 @@ function Post({ post }) {
   const [reviews, setReviews] = useState([]);
   const [showReviews, setShowReviews] = useState(false);
   const [newComment, setNewComment] = useState('');
-  
 
+  
   useEffect(() => {
     const jwtToken = localStorage.getItem('token'); 
     if (jwtToken) {
@@ -178,11 +184,28 @@ function Post({ post }) {
       console.log(JSON.stringify(error))
     }
 
-    
-
-  //  post.reviews = updatedReviews;
-
     setNewComment(''); // Clear the input field
+  }
+
+  const handleDeleteComment = async (commentId) => {
+    try {
+
+      console.log('commentId: ', commentId);
+      const response = await axios.post('http://localhost:3000/post/deleteComment', {
+        postId: post._id, commentId: commentId},
+        {headers: { Authorization: `Bearer ${jwtToken}`, }}, { withCredentials: true },);
+
+      console.log(response.data.message);
+
+      setReviews(old => response.data.reviews);
+      console.log('new reviews: ')
+      console.log(reviews);
+      
+    } catch (error) {
+      console.error('Error participating in event: ', error.message);
+      console.log(JSON.stringify(error))
+    }
+
   }
 
   const startDate = new Date(post.startDate).toLocaleDateString('en-US', {
@@ -212,10 +235,9 @@ function Post({ post }) {
         <div className="popup">
           <div className="popup-content">
         <p className="card-text">Event details: {post.content}</p>
-        <p className="card-text">Area: {post.arealocation}</p>
-        <p className="card-text">Location: {post.location}</p>
-        <p className="card-text">Starts at: {post.startTime}</p>
-        <p className="card-text">Ends at: {post.endTime}</p>
+        <p className="card-text">Location: {post.location}, Area: {post.arealocation}</p>
+        <p className="card-text">Starts at: {post.startTime}, Ends at: {post.endTime}</p>
+        <p className="card-text">For more information: {currentUser.email}</p>
 
         <div>      
           {/* Handling on participants and reviews buttons */}
@@ -268,6 +290,8 @@ function Post({ post }) {
                                 <div className="comment-timestamp">{review.dateAndTime}</div>
                                 <br />
                                 <strong>Comment:</strong> {review.text}
+                                {currentUser.firstname === review.userFirstName && currentUser.lastname === review.userLastName && (
+                                  <button className="delete-button" onClick={() => handleDeleteComment(review._id)}>Delete</button>)}
                                 </>
                                )}  
                               

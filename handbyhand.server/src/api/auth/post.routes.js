@@ -3,6 +3,7 @@ const router = express.Router();
 const createPostController = require("../../../controllers/createPostController");
 const postController = require("../../../controllers/postController");
 const postReviewsController = require("../../../controllers/postReviewsController");
+const advancesSearchController = require("../../../controllers/advancedSearchController");
 
 const {authenticateToken } = require("../../../middleware/auth.middleware");
 
@@ -25,5 +26,9 @@ router.route('/cancelParticipation').post(authenticateToken, postController.remo
 router.route('/reviews').post(authenticateToken, postReviewsController.getPostReviews);
 
 router.route('/addComment').post(authenticateToken, postReviewsController.addNewComment);
+
+router.route('/deleteComment').post(authenticateToken, postReviewsController.deleteComment);
+
+router.route('/sortedPosts').post(authenticateToken, advancesSearchController.sortPosts);
 
 module.exports = router;

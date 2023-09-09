@@ -73,38 +73,57 @@ const MyTabs = () => {
             <Tabs defaultActiveKey="tab1" id="my-tabs">
                 <Tab eventKey="tab1" title="All">
                     {
+                     (posts === null ||posts.length ===0 ||!Array.isArray(posts)) ? (
+                        <div ><p>No Posts.</p></div>
+                    ) : (
                         posts.map((post, index) => (
                             <div key={index}>
                                 <Post post={post} />
                             </div>
                         ))
+                    )
                     }
                 </Tab>
                 <Tab eventKey="tab2" title="Social">
                     {
-                        socialPosts.map((post, index) => (
-                            <div key={index}>
-                                <Post post={post} />
-                            </div>
-                        ))
+                        (socialPosts === null ||socialPosts.length ===0 ||!Array.isArray(socialPosts)) ? (
+                            <div ><p>No Posts.</p></div>
+                        ) : (
+                            socialPosts.map((post, index) => (
+                                <div key={index}>
+                                    <Post post={post} />
+                                </div>
+                            ))
+                        )
+                        
                     }
                 </Tab>
                 <Tab eventKey="tab3" title="Volunteer">
                 {
-                        volunteerPosts.map((post, index) => (
-                            <div key={index}>
-                                <Post post={post} />
-                            </div>
-                        ))
+                        (volunteerPosts === null ||volunteerPosts.length ===0 ||!Array.isArray(volunteerPosts)) ? (
+                            <div ><p>No Posts.</p></div>
+                        ) : (
+                            volunteerPosts.map((post, index) => (
+                                <div key={index}>
+                                    <Post post={post} />
+                                </div>
+                            ))
+                        )
+                        
                     }
                 </Tab>
                 <Tab eventKey="tab4" title="Contribution">
                 {
-                        contributionPosts.map((post, index) => (
-                            <div key={index}>
-                                <Post post={post} />
-                            </div>
-                        ))
+                        (contributionPosts === null ||contributionPosts.length ===0 ||!Array.isArray(contributionPosts)) ? (
+                            <div ><p>No Posts.</p></div>
+                        ) : (
+                            contributionPosts.map((post, index) => (
+                                <div key={index}>
+                                    <Post post={post} />
+                                </div>
+                            ))
+                        )
+                        
                     }
                 </Tab>
             </Tabs>
