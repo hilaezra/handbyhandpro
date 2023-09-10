@@ -11,8 +11,21 @@ const SignUpPage = () => {
     const [birthday, setBirthday] = React.useState("")
     const [email, setEmail] = React.useState("")
     const [facebookuser, setFacebookuser] = React.useState("")
+    const [skills, setSkills] = React.useState("")
     const [username, setUsername] = React.useState("")
     const [password, setPassword] = React.useState("")
+    const [phoneNumber, setPhoneNumber] = React.useState('');
+
+
+    const handleSkillsChange = (e) => {
+        console.log(e.target.value)
+        setSkills(e.target.value)  
+    }
+    
+    const handlePhoneNumberChange = (e) => {
+        console.log(e.target.value)
+        setPhoneNumber(e.target.value)  
+    }
 
     const handleFirstnameChange = (e) => {
         console.log(e.target.value)
@@ -64,7 +77,9 @@ const SignUpPage = () => {
                 gender: gender,
                 birthday: birthday,
                 email: email,
+                phoneNumber: phoneNumber,
                 facebookuser: facebookuser,
+                skills: skills,
                 username: username,
                 password: password
             }) 
@@ -107,8 +122,16 @@ const SignUpPage = () => {
                 <input className="text-field" name='email' value={email} onChange={handleEmailChange} />
             </div>
             <div className="form-group">
+                <label className="login-lab" htmlFor="phoneNumber">Phone Number:</label>
+                <input className="text-field"  type="tel" id="phoneNumber" name="phoneNumber" value={phoneNumber} onChange={handlePhoneNumberChange} />
+            </div>
+            <div className="form-group">
                 <label className="login-lab" htmlFor="facebookuser">Facebook username: </label>
                 <input className="text-field" name='facebookuser' value={facebookuser} onChange={handleFacebookuserChange} />
+            </div>
+            <div className="form-group">
+                <label className="login-lab" htmlFor="skills">About me/Skills: </label>
+                <input className="text-field" name='skills' value={skills} onChange={handleSkillsChange} />
             </div>
             <div className="form-group">
                 <label className="login-lab" htmlFor="username">Username: </label>
@@ -120,7 +143,7 @@ const SignUpPage = () => {
             </div>
             </form>
             <div>
-            <button class="login-btn " onClick={handleSignUpClicked}>Sign Up</button>
+            <button className="login-btn " onClick={handleSignUpClicked}>Sign Up</button>
             </div>
             
         </div>

@@ -57,12 +57,17 @@ const ProfilePage = () => {
             <label className="textfield-lab" htmlFor="author">Email: </label>
             <label className="user-details" htmlFor="author">{user.email}</label>
             </div>
+            <div>
+            <label className="textfield-lab" htmlFor="author">Phone Number: </label>
+            <label className="user-details" htmlFor="author">{user.phoneNumber}</label>
+            </div>
             {/* <label className="textfield-lab" htmlFor="author">Mobile: </label>
             <label className="user-details" htmlFor="author">{user.mobile}</label> */}
           </div>
 
           <div className="skills form-group-profile">
-            <h5 id="profile-page-title">Skills</h5>
+            <h5 id="profile-page-title">About me/Skills</h5>
+            <label className="user-details" htmlFor="author">{user.skills}</label>
           </div>
 
           {/* <div className="future-events form-group-profile">

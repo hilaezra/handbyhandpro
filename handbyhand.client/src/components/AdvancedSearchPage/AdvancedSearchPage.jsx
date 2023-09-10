@@ -76,7 +76,7 @@ const AdvancedSearchPage = () => {
         <form>
           <div className="event-area form-group">
             <label className="textfield-lab" htmlFor="event-location">Location Area: </label>
-            <select className="text-field" value={arealocation} onChange={handleAreaChange}>
+            <select className="text-field-search" value={arealocation} onChange={handleAreaChange}>
               <option value="Center">Center</option>
               <option value="North">North</option>
               <option value="South">South</option>
@@ -87,17 +87,17 @@ const AdvancedSearchPage = () => {
 
           <div className="start-date form-group">
             <label className="textfield-lab" htmlFor="start-date">Start Date: </label>
-            <input className="text-field" type="date" value={startDate} onChange={handleStartDateChange} />
+            <input className="text-field-search" type="date" value={startDate} onChange={handleStartDateChange} />
           </div>
 
           <div className="end-date form-group">
             <label className="textfield-lab" htmlFor="start-date">End Date: </label>
-            <input className="text-field" type="date" value={endDate} onChange={handleEndDateChange} />
+            <input className="text-field-search" type="date" value={endDate} onChange={handleEndDateChange} />
           </div>
 
           <div className="event-type form-group">
             <label className="textfield-lab" htmlFor="event-type">Event Type: </label>
-            <select className="text-field" value={eventType} onChange={handleOptionChange}>
+            <select className="text-field-search" value={eventType} onChange={handleOptionChange}>
             <option value="All">All</option>
               <option value="Social">Social</option>
               <option value="Volunteer">Volunteer</option>

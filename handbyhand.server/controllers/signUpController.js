@@ -11,7 +11,7 @@ module.exports = {
           const user = req.body;
 
           // Validate user input
-          if(!user.firstname|| !user.lastname || !user.email || !user.facebookuser || !user.username || !user.password || !user.gender || !user.birthday) 
+          if(!user.firstname|| !user.lastname || !user.email || !user.facebookuser || !user.username || !user.password || !user.gender || !user.birthday || !user.phoneNumber) 
           {
               console.log('Missing registration details'); //for checking!
               return res.status(400).json({ error: "Missing registration details"});
