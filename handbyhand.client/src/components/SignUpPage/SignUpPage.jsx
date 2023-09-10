@@ -131,7 +131,8 @@ const SignUpPage = () => {
             </div>
             <div className="form-group">
                 <label className="login-lab" htmlFor="skills">About me/Skills: </label>
-                <input className="text-field" name='skills' value={skills} onChange={handleSkillsChange} />
+                <textarea className="text-field content"name='skills' value={skills} onChange={handleSkillsChange} />
+                {/* <input className="text-field" name='skills' value={skills} onChange={handleSkillsChange} /> */}
             </div>
             <div className="form-group">
                 <label className="login-lab" htmlFor="username">Username: </label>

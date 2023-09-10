@@ -65,7 +65,10 @@ const HomePage = () => {
         <HomePageTabs />
       </div>
       <div className="modaa yoganote">
-        <div className="motos">{randomSentence}</div>
+        <div className="motos">
+          <h6 className="moto-h6">What is volunteering?</h6>
+          "{randomSentence}"
+          </div>
         <img src='../../AppImages/yoganote.png' style={{ width: '214px', height: '350px' }} />
       </div>
     </div>
