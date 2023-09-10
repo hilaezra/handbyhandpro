@@ -10,19 +10,44 @@
   margin: 5px;
 }
 
+.hello-user {
+  padding: 1px;
+  height: 20px;
+  width: 214px;
+  color: #DF7861;
+  font-weight: bolder;
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.motos {
+  background-color: #ECB390;
+  color: white;
+  border: none;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 12px;
+  font-weight: bold;
+  height: 70px;
+  width: 214px;
+  margin-bottom: 15px;
+ padding: 5px;
+}
+
 .home-page-tabs {
-    width: 100%;
-    /* border: 1px solid red; */
+  width: 100%;
+  /* border: 1px solid red; */
 }
 
 .notification {
-    margin-top: 100px;
-    width: 50%;
-    height: 200px;
-    margin: 20px;
-    background-color: #94B49F;
-    color: #FCF8E8;
-    overflow-y: scroll;
-    /* Set a high z-index to position the element above the navbar */
-    /* z-index: 9999; */
-    }
+  margin-top: 100px;
+  width: 50%;
+  height: 200px;
+  margin: 20px;
+  background-color: #94B49F;
+  color: #FCF8E8;
+  overflow-y: scroll;
+  /* Set a high z-index to position the element above the navbar */
+  /* z-index: 9999; */
+}
