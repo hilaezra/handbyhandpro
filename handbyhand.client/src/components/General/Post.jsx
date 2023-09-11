@@ -13,6 +13,7 @@ function Post({ post }) {
   const jwtToken = localStorage.getItem('token');
   const decodedToken = jwtDecode(jwtToken);
   const currentUser = {
+    userId: decodedToken.userId,
     firstname: decodedToken.firstname,
     lastname: decodedToken.lastname,
     email: decodedToken.email
@@ -223,21 +224,28 @@ function Post({ post }) {
   return (
     <div id="post" className="card mb-3">
       <div className="card-body">
-        <h5 className="card-title">{post.eventTitle}</h5>
+        <h5 className="card-title"><strong>{post.eventTitle}</strong></h5>
         <h6 className="card-subtitle mb-2 text-muted">{post.authorName}</h6>
         <h6 className="card-subtitle mb-2 text-muted">{post.eventType}</h6>
-        <p className="card-text">Starts: {startDate}</p>
-        <p className="card-text">Ends: {endDate}</p>
+        <p className="card-text"><strong>Starts:</strong> {startDate}</p>
+        <p className="card-text"><strong>Ends:</strong> {endDate}</p>
         
         <button className="post-btn" onClick={handleOpenPopup}>show more details</button>
+        {/* <div>
+        {currentUser.userId === post.authorID &&  (
+           <button className="delete-post-button" onClick={() => handleDeletePost(post._id)}>Delete Post</button>)} 
+
+        </div> */}
+        
+                                
 
         {showPopup && (
         <div className="popup">
           <div className="popup-content">
-        <p className="card-text">Event details: {post.content}</p>
-        <p className="card-text">Location: {post.location}, Area: {post.arealocation}</p>
-        <p className="card-text">Starts at: {post.startTime}, Ends at: {post.endTime}</p>
-        <p className="card-text">For more information: {currentUser.email}</p>
+        <p className="card-text"><strong>Event details:</strong> {post.content}</p>
+        <p className="card-text"> <strong>Location:</strong> {post.location}, <strong>Area:</strong> {post.arealocation}</p>
+        <p className="card-text"> <strong>Starts at:</strong>{post.startTime}, <strong>Ends at:</strong> {post.endTime}</p>
+        <p className="card-text"><strong>For more information:</strong> {post.authorEmail}</p>
 
         <div>      
           {/* Handling on participants and reviews buttons */}

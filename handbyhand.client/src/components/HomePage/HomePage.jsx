@@ -58,7 +58,7 @@ const HomePage = () => {
     // </div> */}
     <div className='wrapper'>
       <div className="modaa shelternote">
-        <div className="hello-user">Hello, {currentUser.firstname} {currentUser.lastname} </div>
+        <div className="hello-user">Hello, {currentUser.firstname} </div>
         <img src='../../AppImages/shelterNote.png' style={{ width: '214px', height: '400px' }} />
       </div>
       <div className="home-page-tabs">

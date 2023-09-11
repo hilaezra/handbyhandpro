@@ -110,6 +110,7 @@ module.exports = {
         //create new post
         post.authorID = author;
         post.authorName = author.username;
+        post.authorEmail = author.email;
         if(post.AuthorIsParticipant){
             post.participants=author;
         }else{

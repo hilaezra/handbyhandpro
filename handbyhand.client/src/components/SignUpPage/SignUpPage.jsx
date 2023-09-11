@@ -85,7 +85,7 @@ const SignUpPage = () => {
             }) 
 
             if(response.status == 200)
-            navigate("/home"); 
+            navigate("/"); 
         //else //todo!  
         
         } catch (error) {
