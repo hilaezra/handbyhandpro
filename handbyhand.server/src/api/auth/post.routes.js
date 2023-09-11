@@ -17,6 +17,8 @@ router.route('/getContributionPosts').get(createPostController.getContributionPo
 
 router.route('/createevent').post(authenticateToken, createPostController.createPost);
 
+router.route('/deletePost').post(authenticateToken, postController.deletePost);
+
 router.route('/participants').post(authenticateToken, postController.getParticipants);
 
 router.route('/participate').post(authenticateToken, postController.addParticipant);

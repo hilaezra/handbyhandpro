@@ -80,4 +80,23 @@ module.exports = {
             res.status(500).json({ message: 'Error participating in the event' });
         }
     }, 
+
+    deletePost: async (req, res) =>{
+
+        const postId = req.body.postId;
+
+        try{
+            const post = await Posts.findByIdAndRemove(postId);
+            if (!post){
+                return res.status(404).json({ message: 'Event not found' });  
+            } 
+
+            res.status(200).json({ message: 'Post deleted successfully' });
+
+        }catch (error) {
+            console.error('Error delete post:', error);
+            res.status(500).json({ message: 'Error delete post' });
+        }
+
+    },
 };

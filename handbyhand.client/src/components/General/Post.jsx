@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import './Post.css';
 import axios from 'axios'
 import jwtDecode from 'jwt-decode';
+import { useNavigate } from 'react-router-dom';
+
 //import Popup from './PopUp';
 
 axios.defaults.withCredentials = true
@@ -209,6 +211,27 @@ function Post({ post }) {
 
   }
 
+
+    const navigate = useNavigate();
+  const handleDeletePost = async (postId) => {
+    try {
+
+      console.log('postId: ', postId);
+      const response = await axios.post('http://localhost:3000/post/deletePost', {
+        postId: post._id},
+        {headers: { Authorization: `Bearer ${jwtToken}`, }}, { withCredentials: true },);
+
+      console.log(response.data.message);
+      navigate('/home');
+
+      
+    } catch (error) {
+      console.error('Error participating in event: ', error.message);
+      console.log(JSON.stringify(error))
+    }
+
+  }
+
   const startDate = new Date(post.startDate).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
@@ -231,14 +254,14 @@ function Post({ post }) {
         <p className="card-text"><strong>Ends:</strong> {endDate}</p>
         
         <button className="post-btn" onClick={handleOpenPopup}>show more details</button>
-        {/* <div>
+        <div>
         {currentUser.userId === post.authorID &&  (
            <button className="delete-post-button" onClick={() => handleDeletePost(post._id)}>Delete Post</button>)} 
 
-        </div> */}
+        </div>
         
-                                
-
+        
+        
         {showPopup && (
         <div className="popup">
           <div className="popup-content">
